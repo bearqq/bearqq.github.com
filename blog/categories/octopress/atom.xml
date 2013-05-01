@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <feed xmlns="http://www.w3.org/2005/Atom">
 
-  <title><![CDATA[Another blog for bearqq]]></title>
-  <link href="http://bearqq.github.com/atom.xml" rel="self"/>
+  <title><![CDATA[Category: Octopress | Another blog for bearqq]]></title>
+  <link href="http://bearqq.github.com/blog/categories/octopress/atom.xml" rel="self"/>
   <link href="http://bearqq.github.com/"/>
   <updated>2013-05-01T00:08:15+00:00</updated>
   <id>http://bearqq.github.com/</id>
@@ -132,19 +132,12 @@ Feed烧制  FeedBurner  FeedSky
 
 <p>最后去编辑source/_includes/article.html，在最后一个endif后面加上</p>
 
-<pre><code>Included file 'poste/uyan.html' not found in _includes directory
+<pre><code>
+Included file 'poste/uyan.html' not found in _includes directory
+
 </code></pre>
 
 <p>然后每个帖子后面都会有留言框了。记得generate然后deploy</p>
-]]></content>
-  </entry>
-  
-  <entry>
-    <title type="html"><![CDATA[Hello world!]]></title>
-    <link href="http://bearqq.github.com/blog/2013/04/30/hello-world-slash/"/>
-    <updated>2013-04-30T20:04:00+00:00</updated>
-    <id>http://bearqq.github.com/blog/2013/04/30/hello-world-slash</id>
-    <content type="html"><![CDATA[<p>What happened?</p>
 ]]></content>
   </entry>
   
