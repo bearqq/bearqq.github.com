@@ -4,7 +4,7 @@
   <title><![CDATA[Another blog for bearqq]]></title>
   <link href="http://bearqq.github.com/atom.xml" rel="self"/>
   <link href="http://bearqq.github.com/"/>
-  <updated>2013-05-01T00:08:15+00:00</updated>
+  <updated>2013-05-01T10:48:12+00:00</updated>
   <id>http://bearqq.github.com/</id>
   <author>
     <name><![CDATA[Bearqq]]></name>
@@ -71,10 +71,10 @@ rake generate
 
 <h2>配置octopress</h2>
 
-<p>按理说应该先配置吧-。-
-配置文件_config.yml，可以vi编辑之。文件末尾有很多<strong>根本不存在的网站</strong>可以把那些值改成false而华丽丽的无视掉。
-还有个要配置的，就是你的github了。去github新建个账号，比如bearqq。
-然后建个repo叫bearqq.github.com，前面必须是你的名字。然后设置一下ssh的key，这个不想多说。
+<p>按理说应该先配置吧-。-<br/>
+配置文件_config.yml，可以vi编辑之。文件末尾有很多<strong>根本不存在的网站</strong>可以把那些值改成false而华丽丽的无视掉。<br/>
+还有个要配置的，就是你的github了。去github新建个账号，比如bearqq。<br/>
+然后建个repo叫bearqq.github.com，前面必须是你的名字。然后设置一下ssh的key，这个不想多说。<br/>
 然后嘛</p>
 
 <pre><code>rake setup_github_pages
@@ -89,11 +89,19 @@ rake generate
 <pre><code>rake new_post["title"]
 </code></pre>
 
-<p>然后他就会提示在哪儿哪儿生成了个交神马玩意的xxx.md文件，之后就去编辑一下吧。语法自己网上搜，没什么语法。尽可以进去以后打个hello world然后滚蛋。
+<p>然后他就会提示在哪儿哪儿生成了个交神马玩意的xxx.md文件，之后就去编辑一下吧。语法自己网上搜，没什么语法。尽可以进去以后打个hello world然后滚蛋。<br/>
 话说，烦人的地方也在这里。有中文，需要用utf-8保存文件。如果生成文章的时候出错，那就在终端下执行</p>
 
 <pre><code>export LANG="C.UTF-8"
 export LC_ALL="C.UTF-8"
+</code></pre>
+
+<p>可能需要做得事情</p>
+
+<pre><code>apt-get install language-pack-zh language-pack-zh-base language-support-zh
+apt-get install locales
+dpkg-reconfigure locales
+export LC_ALL="zh_CN.UTF-8"
 </code></pre>
 
 <h2>生成文章</h2>
@@ -115,27 +123,104 @@ rake preview
 
 <p>尼玛一个博客没有评论敢出来溜达？？？</p>
 
-<p>类型        国外服务  国内服务
-Feed烧制  FeedBurner  FeedSky
-分享到       AddThis     JiaThis
-微博      Twitter     weibo.com
-网络书签    Delicious, Google Bookmarks      QQ书签, 百度搜藏
-网络图床    Flickr      yupoo , POCO
-网络评论    Disqus      友言</p>
+<table>
+    <tr>
+        <td>
+            &#31867;&#22411;
+        </td>
+        <td>
+            &#22269;&#22806;&#26381;&#21153;
+        </td>
+        <td>
+            &#22269;&#20869;&#26381;&#21153;
+        </td>
+    </tr>
+    <tr>
+        <td>
+            Feed&#28903;&#21046; 
+        </td>
+        <td>
+            FeedBurner 
+        </td>
+        <td>
+            FeedSky
+        </td>
+    </tr>
+    <tr>
+        <td>
+            &#20998;&#20139;&#21040; 
+        </td>
+        <td>
+                AddThis 
+        </td>
+        <td>
+            JiaThis
+        </td>
+    </tr>
+    <tr>
+        <td>
+            &#24494;&#21338; 
+        </td>
+        <td>
+                Twitter 
+        </td>
+        <td>
+            weibo.com
+        </td>
+    </tr>
+    <tr>
+        <td>
+            &#32593;&#32476;&#20070;&#31614; 
+        </td>
+        <td>
+            Delicious, Google Bookmarks 
+        </td>
+        <td>
+             QQ&#20070;&#31614;, &#30334;&#24230;&#25628;&#34255;
+        </td>
+    </tr>
+    <tr>
+        <td>
+            &#32593;&#32476;&#22270;&#24202; 
+        </td>
+        <td>
+            Flickr 
+        </td>
+        <td>
+                yupoo , POCO
+        </td>
+    </tr>
+    <tr>
+        <td>
+            &#32593;&#32476;&#35780;&#35770; 
+        </td>
+        <td>
+            Disqus 
+        </td>
+        <td>
+                &#21451;&#35328;
+        </td>
+    </tr>
+</table>
 
-<p>都同理可做，这里我用uyan.cc，因为代码简单-。-
-去source/<em>includes/post，添加一个uyan.html，把uyan.cc网站上那段代码添加进去。
-然后编辑</em>config.yml，文末加上</p>
 
-<pre><code>uyan: true
+<p>都同理可做，这里我用uyan.cc，因为代码简单-。-<br/>
+去source/_includes/post，添加一个uyan.html，把uyan.cc网站上那段代码添加进去。
+然后编辑_config.yml，文末加上</p>
+
+<pre><code>\# uyan
+uyan: true
 </code></pre>
 
 <p>最后去编辑source/_includes/article.html，在最后一个endif后面加上</p>
 
-<pre><code>Included file 'poste/uyan.html' not found in _includes directory
+<pre><code>{ % if site.uyan % }
+{ % include post/uyan.html % }
+{ % endif % }
 </code></pre>
 
-<p>然后每个帖子后面都会有留言框了。记得generate然后deploy</p>
+<p>然后每个帖子后面都会有留言框了。记得generate然后deploy<br/>
+<strong><em>上面的大括号和百分号之间没有空格！</em></strong> 如果我去掉空格那他就把他转意了……理论上代码块不该被转意的……尼玛</p>
 ]]></content>
   </entry>
   
