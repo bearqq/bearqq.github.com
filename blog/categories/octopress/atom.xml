@@ -4,7 +4,7 @@
   <title><![CDATA[Category: Octopress | Another blog for bearqq]]></title>
   <link href="http://bearqq.github.com/blog/categories/octopress/atom.xml" rel="self"/>
   <link href="http://bearqq.github.com/"/>
-  <updated>2013-05-01T10:48:12+00:00</updated>
+  <updated>2013-05-01T11:15:14+00:00</updated>
   <id>http://bearqq.github.com/</id>
   <author>
     <name><![CDATA[Bearqq]]></name>
@@ -208,7 +208,7 @@ rake preview
 去source/_includes/post，添加一个uyan.html，把uyan.cc网站上那段代码添加进去。
 然后编辑_config.yml，文末加上</p>
 
-<pre><code>\# uyan
+<pre><code># uyan
 uyan: true
 </code></pre>
 
