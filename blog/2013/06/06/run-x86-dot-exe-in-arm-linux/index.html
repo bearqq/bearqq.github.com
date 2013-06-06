@@ -1,0 +1,353 @@
+
+<!DOCTYPE html>
+<!--[if IEMobile 7 ]><html class="no-js iem7"><![endif]-->
+<!--[if lt IE 9]><html class="no-js lte-ie8"><![endif]-->
+<!--[if (gt IE 8)|(gt IEMobile 7)|!(IEMobile)|!(IE)]><!--><html class="no-js" lang="en"><!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  <title>在arm架构linux中运行windows的X86程序exe - Another blog for bearqq</title>
+  <meta name="author" content="Bearqq">
+  <link rel="author" href="humans.txt">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+
+  
+    
+  
+  <meta name="description" content="先来几句科普。A10是arm架构的cpu，就算你运行了linux也运行不了x86的程序。
+linux显然不能直接运行windows的x86程序，因为系统不同怎么谈恋爱？
+那就有人要说了。这不可以那不可以，那不成标题党了么？当然不是， &hellip;">
+  
+  <!-- http://t.co/dKP3o1e -->
+  <meta name="HandheldFriendly" content="True">
+  <meta name="MobileOptimized" content="320">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  
+  <link rel="canonical" href="http://bearqq.github.com/blog/2013/06/06/run-x86-dot-exe-in-arm-linux/">
+  <link href="/favicon.png" rel="icon">
+  <link href='http://fonts.googleapis.com/css?family=Cantarell' rel='stylesheet' type='text/css'>
+  <link href="/stylesheets/screen.css" media="screen, projection" rel="stylesheet" type="text/css">
+  <link href="/atom.xml" rel="alternate" title="Another blog for bearqq" type="application/atom+xml">
+  <meta name="og:type" content="website" />
+  <meta name="og:site_name" content="Another blog for bearqq" />
+  <meta name="og:title" content="在arm架构linux中运行windows的X86程序exe" />
+  <meta name="og:description" content="先来几句科普。A10是arm架构的cpu，就算你运行了linux也运行不了x86的程序。
+linux显然不能直接运行windows的x86程序，因为系统不同怎么谈恋爱？
+那就有人要说了。这不可以那不可以，那不成标题党了么？当然不是， &hellip;" />
+  <meta name="og:url" content="http://bearqq.github.com/blog/2013/06/06/run-x86-dot-exe-in-arm-linux/"/>
+  <meta name="url" content="http://bearqq.github.com/blog/2013/06/06/run-x86-dot-exe-in-arm-linux/">
+  
+  <meta name="subject" content="armexelinuxwindowswinex86"/>
+  <meta name="category" content="armexelinuxwindowswinex86"/>
+  
+  <meta name="distribution" content="global">
+  <!--Fonts from Google"s Web font directory at http://google.com/webfonts -->
+<link href="http://fonts.googleapis.com/css?family=PT+Serif:regular,italic,bold,bolditalic" rel="stylesheet" type="text/css">
+<link href="http://fonts.googleapis.com/css?family=PT+Sans:regular,italic,bold,bolditalic" rel="stylesheet" type="text/css">
+
+  
+
+</head>
+
+<body   >
+  <nav role="navigation"><div class="navbar">
+  <div class="navbar-inner">
+    <a class="brand" href="/">Another blog for bearqq</a>
+    <ul class="nav">
+      <li><a href="/">Home</a></li>
+      <li><a href="/blog/archives">Archives</a></li>
+    </ul>
+    <ul class="nav" data-subscription="rss">
+      <li><a href="/atom.xml" rel="subscribe-rss" title="subscribe via RSS">RSS</a></li>
+      
+    </ul>
+      
+    <form class="navbar-form" action="http://google.com/search" method="get">
+      <fieldset role="search">
+        <input type="hidden" name="q" value="site:bearqq.github.com" />
+        <input class="span2" type="text" name="q" results="0" placeholder="Search"/>
+      </fieldset>
+    </form>
+      
+    
+  </div>
+</div>
+</nav>
+  <div class="wrapper_single">
+    <div class="container">
+      <article class="span8 offset2" role="article">
+        <div class="article-format">
+
+  <header>
+    
+      <h1 class="entry-title">在arm架构linux中运行windows的X86程序exe</h1>
+    
+    
+      <p class="meta">
+        
+  
+
+
+  
+    <span class="byline author vcard">by <span class="fn">Bearqq</span></span>
+  
+
+ - 
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2013-06-06T10:29:00+00:00" pubdate data-updated="true">Jun 6<span>th</span>, 2013</time> - 
+        
+
+posted in
+<span class="categories">
+  
+    <a class='category' href='/blog/categories/arm/'>arm</a>, <a class='category' href='/blog/categories/exe/'>exe</a>, <a class='category' href='/blog/categories/linux/'>linux</a>, <a class='category' href='/blog/categories/windows/'>windows</a>, <a class='category' href='/blog/categories/wine/'>wine</a>, <a class='category' href='/blog/categories/x86/'>x86</a>
+  
+</span>
+
+
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><p>先来几句科普。A10是arm架构的cpu，就算你运行了linux也运行不了x86的程序。<br/>
+linux显然不能直接运行windows的x86程序，因为<em>系统不同怎么谈恋爱？</em><br/>
+那就有人要说了。这不可以那不可以，那不成标题党了么？当然不是，我就是要在arm架构的cpu运行着arm架构的linux中运行x86架构的windows程序。</p>
+
+<h2>原理</h2>
+
+<p>首先，为了在linux理运行x86的windows程序，我们需要一个中间层。当然不需要自己写，因为我们有wine。wine的x86版可以在x86架构的linux下运行x86的windows程序。<strong><em>但是wine的arm版只能在arm架构的linux下运行arm架构的windows程序！</em></strong><br/>
+有了wine，我们还需要x86的linux。当然不能直接在arm的机器上运行，那么我们需要qemu。不需要运行整个系统，我们只需要运行i386-linux-user，chroot到x86的linux里运行即可。<br/>
+更简单的说就是：</p>
+
+<pre><code>arm-linux → qemu-user → i386-linux → wine → windows.exe
+</code></pre>
+
+<p>不要问我效率，问效率的都是渣渣。引用国外某孩子的话：very playable</p>
+
+<h2>实现</h2>
+
+<p>理想是美好的，现实是残酷的。qemu有致命bug，导致直接apt-get安装的qemu根本没法用，提示syscalls.c报错。要不是这个，这边文章早n个月就出来了。。<br/>
+解决方案就是打补丁自行编译。<a href="http://forum.winehq.org/viewtopic.php?f=2&amp;t=17701&amp;start=25">补丁参考</a>。<br/>
+由于版本更替，目测得手动去打补丁。帖子里两个补丁都得打。<br/>
+大哥，有打好补丁编译好的版本么？当然有-。-</p>
+
+<pre><code>http://pan.baidu.com/share/link?shareid=3480557522&amp;uk=1243757679
+</code></pre>
+
+<p>放之于</p>
+
+<pre><code>/usr/bin/qemu-i386-static
+</code></pre>
+
+<p>有了qemu这座桥，下面就是i386-linux了。这里需要一个完整的i386的linux基础文件。。需要从我自己电脑考出来么？当然不用~多年前就准备好的i386-debian纯净版可以出场了。</p>
+
+<pre><code>https://bearsigh.googlecode.com/files/i386%20pure.tar.gz
+</code></pre>
+
+<p>使用方法参考<a href="http://bearqq.github.io/blog/2013/05/01/chroot-linux/"></a><br/>
+这里除了要第二阶段展开等过程以外，还要安装一些东西。可以通过安装wine和lxde来解决对包的依赖。我安装了apt-get install lxde和一些字体。<br/>
+然后去<a href="http://www.playonlinux.com/wine/binaries/linux-x86/">这里</a>下载一个最新的wine包，解压出来放到x86系统分区某处，如&#8221;/home/1.5.30-1.5.30-1/&#8221;。</p>
+
+<p>有了i386-linux和wine这座桥了，最后就达到windows.exe了。哈<br/>
+贴上我的脚本</p>
+
+<p>chrootx86：</p>
+
+<pre><code>sysctl -w net.ipv4.ip_forward=1
+
+mount -t binfmt_misc none /proc/sys/fs/binfmt_misc
+echo -1 &gt; /proc/sys/fs/binfmt_misc/status
+echo ':i386:M::\x7fELF\x01\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x02\x00\x03:\xff\xff\xff\xff\xff\xfe\xfe\xff\xff\xff\xff\xff\xff\xff\xff\xff\xfb\xff\xff:/usr/bin/qemu-i386-static:' &gt; /proc/sys/fs/binfmt_misc/register
+
+
+
+#DEBIAN_FRONTEND=noninteractive DEBCONF_NONINTERACTIVE_SEEN=true LC_ALL=C LANGUAGE=C LANG=C chroot /home/tp/x86/debian/ /bin/bash
+export PATH=/home/1.5.30-1.5.30-1/bin:$PATH
+
+DEBIAN_FRONTEND=noninteractive DEBCONF_NONINTERACTIVE_SEEN=true LC_ALL=C LANGUAGE=C LANG=C chroot /home/tp/x86/debian/ echo ':DOSWin:M::MZ::/home/1.5.30-1.5.30-1/bin/wine:' &gt;/proc/sys/fs/binfmt_misc/register
+
+export WINEPREFIX=/root/wineprefix
+
+DEBIAN_FRONTEND=noninteractive DEBCONF_NONINTERACTIVE_SEEN=true LC_ALL=C LANGUAGE=C LANG=C chroot /home/tp/x86/debian/ /home/1.5.30-1.5.30-1/bin/wine $@
+</code></pre>
+
+<p>我把x86的debian放到了&#8221;/home/tp/x86/debian/&#8221;，自行修改脚本。<br/>
+有效果图么？没图我说个jb！<br/>
+<img src="http://ww2.sinaimg.cn/large/45e13792gw1e5elcs4mpfj20sg0goad5.jpg" alt="" />
+<img src="http://ww4.sinaimg.cn/large/45e13792gw1e5emjwkkmdj20sg0gon0d.jpg" alt="" />
+<img src="http://ww4.sinaimg.cn/large/45e13792gw1e5emkgdkd0j20sg0gote4.jpg" alt="" /></p>
+</div>
+
+
+  <footer>
+    <p class="meta">
+      
+  
+
+
+  
+    <span class="byline author vcard">by <span class="fn">Bearqq</span></span>
+  
+
+
+      
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2013-06-06T10:29:00+00:00" pubdate data-updated="true">Jun 6<span>th</span>, 2013</time>
+      
+
+posted in
+<span class="categories">
+  
+    <a class='category' href='/blog/categories/arm/'>arm</a>, <a class='category' href='/blog/categories/exe/'>exe</a>, <a class='category' href='/blog/categories/linux/'>linux</a>, <a class='category' href='/blog/categories/windows/'>windows</a>, <a class='category' href='/blog/categories/wine/'>wine</a>, <a class='category' href='/blog/categories/x86/'>x86</a>
+  
+</span>
+
+
+    </p>
+    
+      <div class="sharing">
+  
+  
+  
+</div>
+
+    
+    
+      <a class="pull-left" href="/blog/2013/06/06/linux-a10-cubieboard/" title="Previous Post: 更多ARM版linux下的事情。附带cubieboard修改版lubuntu，支持运行windows程序x86的exe">&laquo; 更多ARM版linux下的事情。附带cubieboard修改版lubuntu，支持运行windows程序x86的exe</a>
+    
+    
+        
+         <!-- UY BEGIN -->
+<div id="uyan_frame"></div>
+<script type="text/javascript" id="UYScript" src="http://v1.uyan.cc/js/iframe.js?UYUserId=1772239" async=""></script>
+<!-- UY END -->
+
+        
+  </footer>
+
+</div>
+
+        
+      </article>
+    </div>
+  </div>
+  <div id="footer-widgets">
+  <div class="container">
+    <div class="row">
+  <div class="span3">
+    <h2>recent posts</h2>
+    <ul class="recent_posts">
+      
+        <li>
+          <a href="/blog/2013/06/06/run-x86-dot-exe-in-arm-linux/">在arm架构linux中运行windows的X86程序exe</a>
+        </li>
+      
+        <li>
+          <a href="/blog/2013/06/06/linux-a10-cubieboard/">更多ARM版linux下的事情。附带cubieboard修改版lubuntu，支持运行windows程序x86的exe</a>
+        </li>
+      
+        <li>
+          <a href="/blog/2013/05/05/lubuntu/">Lubuntu13.04 for A10 SD卡版本</a>
+        </li>
+      
+        <li>
+          <a href="/blog/2013/05/01/chroot-linux/">chroot方式在android（linux）中运行linux</a>
+        </li>
+      
+        <li>
+          <a href="/blog/2013/04/30/procedure/">Octopress安装过程摘要</a>
+        </li>
+      
+    </ul>
+    <h2><a href="/blog/archives">archives</a></h2>
+  </div>
+  <div class="span3">
+    
+
+  </div>
+  <div class="span4">
+    
+
+  </div>
+  <div class="span2">
+    <h2>found on</h2>
+
+<a href="https://github.com/bearqq/" rel="tooltip" title="Github"><img class="social_icon" title="Github" alt="github icon" src="/images/glyphicons_381_github.png"></a>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  </div>
+</div>
+
+  </div>
+</div>
+<footer class="footer">
+  <div class="container">
+    <p class="pull-left">
+  <a href="/">Another blog for bearqq</a>
+  - Copyright &copy; 2013 - Bearqq
+</p>
+<p class="pull-right">
+  <span>Powered by <a href="http://octopress.org/">Octopress</a>.</span>
+  
+    <span>Designed by <a href="http://www.AdrianArtiles.com">Adrian Artiles</a>.</span>
+  
+</p>
+
+  </div>
+</footer>
+
+  <script src="//ajax.googleapis.com/ajax/libs/jquery/1.7.2/jquery.min.js" type="text/javascript"></script>
+<script>window.jQuery || document.write('<script src="/javascripts/libs/jquery-1.7.2.min.js" type="text/javascript"><\/script>')</script>
+<script src="/javascripts/libs/bootstrap.min.js" type="text/javascript"></script>
+<script src="/javascripts/jquery.tweet.js" type="text/javascript"></script>
+<script src="/javascripts/jquery.instagram.js" type="text/javascript"></script>
+<script src="/javascripts/libs/jquery.masonry.min.js" type="text/javascript"></script>
+<script src="/javascripts/custom.js" type="text/javascript"></script>
+
+
+
+
+
+
+
+
+
+
+
+</body>
+</html>

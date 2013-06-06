@@ -2,7 +2,7 @@
 <urlset xmlns='http://www.sitemaps.org/schemas/sitemap/0.9'>
     <url>
         <loc>http://bearqq.github.com/blog/2013/04/30/hello-world-slash/</loc>
-        <lastmod>2013-04-30T20:32:38+00:00</lastmod>
+        <lastmod>2013-06-04T17:22:32+00:00</lastmod>
     </url>
     <url>
         <loc>http://bearqq.github.com/blog/2013/04/30/procedure/</loc>
@@ -10,18 +10,26 @@
     </url>
     <url>
         <loc>http://bearqq.github.com/blog/2013/05/01/chroot-linux/</loc>
-        <lastmod>2013-05-01T13:10:44+00:00</lastmod>
+        <lastmod>2013-06-04T17:23:01+00:00</lastmod>
     </url>
     <url>
         <loc>http://bearqq.github.com/blog/2013/05/05/lubuntu/</loc>
-        <lastmod>2013-05-05T10:27:06+00:00</lastmod>
+        <lastmod>2013-06-06T11:17:25+00:00</lastmod>
+    </url>
+    <url>
+        <loc>http://bearqq.github.com/blog/2013/06/06/linux-a10-cubieboard/</loc>
+        <lastmod>2013-06-06T11:22:51+00:00</lastmod>
+    </url>
+    <url>
+        <loc>http://bearqq.github.com/blog/2013/06/06/run-x86-dot-exe-in-arm-linux/</loc>
+        <lastmod>2013-06-06T11:12:48+00:00</lastmod>
     </url>
     <url>
         <loc>http://bearqq.github.com/blog/archives/</loc>
-        <lastmod>2013-05-05T10:27:06+00:00</lastmod>
+        <lastmod>2013-06-06T11:22:51+00:00</lastmod>
     </url>
     <url>
         <loc>http://bearqq.github.com/</loc>
-        <lastmod>2013-05-05T10:27:06+00:00</lastmod>
+        <lastmod>2013-06-06T11:22:51+00:00</lastmod>
     </url>
 </urlset>

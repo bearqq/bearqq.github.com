@@ -1,0 +1,333 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+
+  <title><![CDATA[Category: ubuntu | Another blog for bearqq]]></title>
+  <link href="http://bearqq.github.com/blog/categories/ubuntu/atom.xml" rel="self"/>
+  <link href="http://bearqq.github.com/"/>
+  <updated>2013-06-06T11:24:26+00:00</updated>
+  <id>http://bearqq.github.com/</id>
+  <author>
+    <name><![CDATA[Bearqq]]></name>
+    
+  </author>
+  <generator uri="http://octopress.org/">Octopress</generator>
+
+  
+  <entry>
+    <title type="html"><![CDATA[更多ARM版linux下的事情。附带cubieboard修改版lubuntu，支持运行windows程序x86的exe]]></title>
+    <link href="http://bearqq.github.com/blog/2013/06/06/linux-a10-cubieboard/"/>
+    <updated>2013-06-06T09:20:00+00:00</updated>
+    <id>http://bearqq.github.com/blog/2013/06/06/linux-a10-cubieboard</id>
+    <content type="html"><![CDATA[<p><a href="http://bearqq.github.io/blog/2013/05/05/lubuntu/">上一篇文章</a>写了如何把原生linux安装到sdcard里，并在A10机型运行，这次再说一说怎么运行别的linux版本。</p>
+
+<h3>移植别的linux</h3>
+
+<h2>准备基础文件</h2>
+
+<p>机器cpu是ARM的，linux文件也需要是为arm架构编译的。很多linux发行版都有arm架构支持，我还是以debian/ubuntu来说。<br/>
+首先是准备基础文件，可以参考<a href="http://blog.ooqoo.org/blog/2013/05/01/chroot-linux/">在chroot那篇文章</a>里写的debian和ubuntu的文件准备，也可以是现成的别的发行版的系统文件。这里就不详细讲了，debian系的那篇文章里写了，别的系的略麻烦。这里不一定要是官方的文件，比如<a href="http://cubieboard.org/">cubieboard</a>就有提供为他的开发板定制的A10的ubuntu系统，也可以是为pi提供的系统，或者别的开发板的都可以。<br/>
+唯一有一点区别的还是在架构上。arm分为armel和armhf，树莓派只支持armel，而A10可以跑armel和armhf，区别<a href="http://www.claudxiao.net/2012/02/armhf/">可以参考</a>A10当然选armhf的来做了。<br/>
+下载了文件系统部分之后，直接复制到sd卡的第二分区。什么？sd卡没有第二分区？参考<a href="http://bearqq.github.io/blog/2013/05/05/lubuntu/">上一篇文章</a>入门。</p>
+
+<h2>准备内核和驱动</h2>
+
+<p>系统文件准备了以后还需要添加内核和驱动。这里给出几个方案：<br/>
+首先是来自<a href="http://pengpod.com/dl/images/">pengpod编译的内核和驱动3.0.57</a>推荐用这个</p>
+
+<pre><code>http://pan.baidu.com/share/link?shareid=3149881464&amp;uk=1243757679
+</code></pre>
+
+<p>然后是我编译的3.0.8。里面不包含mali驱动</p>
+
+<pre><code>http://pan.baidu.com/share/link?shareid=3166131842&amp;uk=1243757679
+</code></pre>
+
+<p>当然也可以自己编译</p>
+
+<pre><code>apt-get install build-essential git
+apt-get install u-boot-tools (if u-boot-tools not found, try uboot-mkimage)
+编译器下载、解压、添加环境
+wget "https://sourcery.mentor.com/GNUToolchain/package5383/public/arm-none-linux-gnueabi/arm-2009q3-67-arm-none-linux-gnueabi-i686-pc-linux-gnu.tar.bz2"
+export PATH="/home/android/sc/arm-2009q3/bin/:$PATH"
+代码下载
+git clone git://github.com/linux-sunxi/linux-sunxi.git
+cd linux-allwinner
+git checkout lichee-3.0.8-sun4i
+编译
+make ARCH=arm sun4i_defconfig
+make ARCH=arm menuconfig
+make ARCH=arm CROSS_COMPILE=arm-none-linux-gnueabi- -j3 uImage
+make ARCH=arm CROSS_COMPILE=arm-none-linux-gnueabi- -j3 INSTALL_MOD_PATH=output modules
+make ARCH=arm CROSS_COMPILE=arm-none-linux-gnueabi- -j3 INSTALL_MOD_PATH=output modules_install
+输出文件在arch/arm/boot/uImage 和output文件夹下
+触摸支持需要禁用多点触摸，参考https://github.com/bearqq/A10-ubuntu-touch-ft5x
+非root访问网络需要修改配置文件# CONFIG_ANDROID_PARANOID_NETWORK is not set
+</code></pre>
+
+<h2>安装内核驱动</h2>
+
+<p>将得到的内核uImage复制到sd卡第一分区，将lib的文件放到第二分区的lib/modules下，如lib/modules/3.0.8/xxx</p>
+
+<h2>其他修正、添加</h2>
+
+<p>文件系统准备好以后，可以chroot进去做点事。参考：</p>
+
+<pre><code>sudo chroot /media/sdcard2/ /bin/bash
+</code></pre>
+
+<p>安装软键盘</p>
+
+<pre><code>apt-get install cellwriter
+</code></pre>
+
+<p>修改加载的驱动</p>
+
+<pre><code>vi /etc/modules
+disp
+lcd
+hdmi
+mali
+mali_drm
+ft5x_ts
+sun4i_keyboard
+ump
+8192cu
+</code></pre>
+
+<p>添加用户</p>
+
+<pre><code>自己弄。。
+</code></pre>
+
+<p>设置自动登录。如</p>
+
+<pre><code>/etc/lxdm/default.conf
+vi /etc/lxdm/default.conf
+autologin=username
+</code></pre>
+
+<p>也可能是：</p>
+
+<pre><code>vi /etc/lightdm/lightdm.conf 
+[SeatDefaults]
+autologin-user=username
+autologin-user-timeout=0
+greeter-session=lightdm-gtk-greeter
+user-session=Lubuntu
+</code></pre>
+
+<h2>别的呢？</h2>
+
+<p><a href="http://linux-sunxi.org/Main_Page">A10社区wiki</a>，可以找到一些已经做好的文件系统</p>
+
+<h2>系统更新</h2>
+
+<p>给出已经修改好的cubieboard的文件系统，包含了内核驱动，使用方法和<a href="http://bearqq.github.io/blog/2013/05/05/lubuntu/">上一篇文章</a>一样</p>
+
+<pre><code>http://pan.baidu.com/share/link?shareid=3284898657&amp;uk=1243757679
+</code></pre>
+
+<p>支持：<br/>
+wifi，触摸，mali驱动，2D加速，可以运行x86的exe文件*，更多</p>
+
+<p>不支持：<br/>
+多点触摸，更多</p>
+
+<p><img src="http://ww4.sinaimg.cn/large/45e13792gw1e5emkgdkd0j20sg0gote4.jpg" alt="" /></p>
+
+<p>arm下如何运行x86程序？<a href="http://bearqq.github.io/blog/2013/06/06/run-x86-dot-exe-in-arm-linux/">且听下回分解</a>。</p>
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[chroot方式在android（linux）中运行linux]]></title>
+    <link href="http://bearqq.github.com/blog/2013/05/01/chroot-linux/"/>
+    <updated>2013-05-01T11:52:00+00:00</updated>
+    <id>http://bearqq.github.com/blog/2013/05/01/chroot-linux</id>
+    <content type="html"><![CDATA[<h1>这是什么</h1>
+
+<p>有时候，需要在一个linux里运行另外一个linux。<br/>
+- 比如可以在android里运行linux，以此运行linux的原生程序，以及爽快的用apt-get安装程序
+- 比如vps商只支持debian5，而军哥的lnmp需要debian6
+- 比如openwrt路由里想挂载一个debian来做一些正常linux做的事
+OK，以上都可以满足，而且我都干过。方法都类似。<br/>
+整个过程可以在linux下，或者用android手机搞定。</p>
+
+<h1>准备文件系统</h1>
+
+<h2>准备镜像文件</h2>
+
+<p>镜像文件也就是xxx.img。话说，openvz的vps，以及部分android手机是没有loop的，也就是不能挂载img文件，那么我只能说，呵呵。把东西放到img里当然可以使文件变得整齐点，也更灵活，当然这也并不是必须做的。如果不想做img，那也可以直接在linux分区里运行，但肯定不能是fat32什么的……</p>
+
+<p>创建镜像</p>
+
+<pre><code>dd if=/dev/zero of=floppy.img bs=1024 count=2048100
+</code></pre>
+
+<p>这里我建了一个大概2G的文件，不要在意细节~想更多自己弄。<br/>
+格式化ext2</p>
+
+<pre><code>mkfs.ext2 floppy.img
+</code></pre>
+
+<p>想要别的格式自己弄。</p>
+
+<p>由于android手机新建镜像困难，这里给出<a href="http://bearsigh.googlecode.com/files/f.tgz">建好的img</a>，自行解压</p>
+
+<p>挂载镜像</p>
+
+<pre><code>mkdir debian
+mount -o loop floppy.img debian/
+</code></pre>
+
+<p>卸载镜像</p>
+
+<pre><code>umount debian
+</code></pre>
+
+<p>android手机可以把img放卡里，但是挂载的目标文件夹最好是放在data下，如</p>
+
+<pre><code>cd /data
+mkdir debian
+mount -o loop /sdcard/floppy.img /data/debian/
+</code></pre>
+
+<p>并且，android手机可能需要安装busybox，并以busybox mount等形式执行</p>
+
+<h2>系统文件，方法一 debian</h2>
+
+<p>假设你手上有一台ubuntu//debian，那么可以用这个方式自己准备基础文件</p>
+
+<pre><code>mkdir debian
+</code></pre>
+
+<p>当然，如果上面挂载了镜像，就cd到镜像挂载的上一级目录，因为待会儿会把文件释放到当前目录的debian目录下。</p>
+
+<pre><code>sudo -s
+apt-get install debootstrap
+</code></pre>
+
+<p>下载基础文件</p>
+
+<pre><code>debootstrap --verbose --arch=armel --foreign squeeze debian http://ftp.us.debian.org/debian
+</code></pre>
+
+<p>这里我以arm架构为例。可自行更改，如i386，mips。
+如此，基础文件已经准备就绪。</p>
+
+<p>这里我提供很早以前准备的几个架构的基础文件，可以直接下下来解压到linux分区中。<br/>
+<a href="http://bearsigh.googlecode.com/files/i386%20pure.tar.gz">i386</a>
+<a href="http://bearsigh.googlecode.com/files/mips%20pure.tar.gz">mips</a>
+<a href="http://bearsigh.googlecode.com/files/arm%20pure.tar">arm</a></p>
+
+<p>然后需要将文件转移到目标文件系统中，如转移到android下并挂载，或转移到android的data目录下，或转移到openwrt的u盘中并且挂载。</p>
+
+<p>进行第二阶段展开</p>
+
+<pre><code>chroot debian /bin/bash
+/debootstrap/debootstrap --second-stage
+</code></pre>
+
+<p>添加源</p>
+
+<pre><code>echo 'deb http://ftp.us.debian.org/debian squeeze main contrib non-free' &gt; /etc/apt/sources.list
+</code></pre>
+
+<p>更新源</p>
+
+<pre><code>export HOME=/root
+export LC_ALL=C
+apt-get update；apt-get upgrade
+</code></pre>
+
+<p>至此，文件系统搞定。</p>
+
+<h2>系统文件，方法二 ubuntu</h2>
+
+<p>ubuntu可以直接下到基础文件，并且解压到镜像或者目录中
+如arm架构的<a href="https://releases.linaro.org/13.04/ubuntu/quantal-images">地址</a>。好简短的样子-。-</p>
+
+<h2>系统文件，方法三 Backtrack</h2>
+
+<p><a href="http://www.backtrack-linux.org/downloads/">Backtrack</a>从5开始就有arm架构的版本，当然x86架构肯定有的。下载下来就可以用，是个img文件。第6代名字更新为<a href="http://www.kali.org/downloads/">kali-linux</a></p>
+
+<h1>安装一些必要的东西</h1>
+
+<p>bt系统里东西够多了，alip版ubuntu里也不少，nano的和方法一里debian的就需要自己安装一些。</p>
+
+<h2>进入系统的脚本</h2>
+
+<p>如果中间没断开的话，那么现在是chroot到新linux里在运行。exit可以回到本机的shell。<br/>
+那么如何从本机的shell里进去呢？参考脚本如下<br/>
+挂载部分 startbt.sh:</p>
+
+<pre><code>export kit=/sdcard/
+export mnt=/data/debian
+export PATH=$bin:/usr/bin:/usr/sbin:/bin:$PATH
+export TERM=linux
+export HOME=/root
+# Mounting Image to the farthest loop point
+# FIXME : check if mount sucessfull otherwise abort whole process.
+mknod /dev/block/loop254 b 7 254
+losetup /dev/block/loop254 $kit/floopy.img
+mount -t ext2 /dev/block/loop254 $mnt
+
+mount -t devpts devpts $mnt/dev/pts
+mount -t proc proc $mnt/proc
+mount -t sysfs sysfs $mnt/sys
+#seting environment
+sysctl -w net.ipv4.ip_forward=1
+echo "Setting /etc/resolv.conf to Google Open DNS 8.8.8.8 and 8.8.4.4"
+echo "nameserver 8.8.8.8" &gt; $mnt/etc/resolv.conf
+echo "nameserver 8.8.4.4" &gt;&gt; $mnt/etc/resolv.conf
+echo "127.0.0.1 localhost" &gt; $mnt/etc/hosts
+</code></pre>
+
+<p>同样，android上最好是mount等命令前加busybox。<br/>
+进入shell bt.sh:</p>
+
+<pre><code>export kit=/sdcard/
+export mnt=/data/debian
+export PATH=$bin:/usr/bin:/usr/sbin:/usr/local/bin/:/usr/local/sbin/:/bin:$PATH
+export TERM=linux
+export HOME=/root
+export SHELL=/bin/bash
+chroot $mnt /bin/bash
+export LANG="C.UTF-8"
+export LC_ALL="C.UTF-8"
+</code></pre>
+
+<p>那么开机以后，先要执行startbt.sh以挂载文件。一次即可。之后想要进入新linux的shell，只需在本机shell执行bt.sh。<br/>
+如果不使用镜像，可酌情删去部分挂载镜像的语句。当然，也得修改镜像位置神马的。。</p>
+
+<h2>安装一些可能有用的东西</h2>
+
+<p>先来安装一堆节操</p>
+
+<pre><code>apt-get install vim busybox wget screen
+apt-get install gcc g++ make
+apt-get install git 
+</code></pre>
+
+<p>桌面和vncserver</p>
+
+<pre><code>apt-get install tightvncserver lxde xterm
+vi /root/.vnc/xstartup
+vncserver
+</code></pre>
+
+<p>默认端口5901</p>
+
+<p>opera</p>
+
+<pre><code>cat &gt;&gt;/etc/apt/sources.list&lt;&lt;END
+deb http://deb.opera.com/opera/ stable non-free #Opera Browser (final releases)
+END
+wget -O - http://deb.opera.com/archive.key | apt-key add -
+apt-get update
+apt-get -y --force-yes install opera
+</code></pre>
+]]></content>
+  </entry>
+  
+</feed>

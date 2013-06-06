@@ -1,0 +1,402 @@
+
+<!DOCTYPE html>
+<!--[if IEMobile 7 ]><html class="no-js iem7"><![endif]-->
+<!--[if lt IE 9]><html class="no-js lte-ie8"><![endif]-->
+<!--[if (gt IE 8)|(gt IEMobile 7)|!(IEMobile)|!(IE)]><!--><html class="no-js" lang="en"><!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  <title>更多ARM版linux下的事情。附带cubieboard修改版lubuntu，支持运行windows程序x86的exe - Another blog for bearqq</title>
+  <meta name="author" content="Bearqq">
+  <link rel="author" href="humans.txt">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+
+  
+    
+  
+  <meta name="description" content="上一篇文章写了如何把原生linux安装到sdcard里，并在A10机型运行，这次再说一说怎么运行别的linux版本。 移植别的linux 准备基础文件 机器cpu是ARM的，linux文件也需要是为arm架构编译的。很多linux发行版都有arm架构支持，我还是以debian/ubuntu来说 &hellip;">
+  
+  <!-- http://t.co/dKP3o1e -->
+  <meta name="HandheldFriendly" content="True">
+  <meta name="MobileOptimized" content="320">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  
+  <link rel="canonical" href="http://bearqq.github.com/blog/2013/06/06/linux-a10-cubieboard/">
+  <link href="/favicon.png" rel="icon">
+  <link href='http://fonts.googleapis.com/css?family=Cantarell' rel='stylesheet' type='text/css'>
+  <link href="/stylesheets/screen.css" media="screen, projection" rel="stylesheet" type="text/css">
+  <link href="/atom.xml" rel="alternate" title="Another blog for bearqq" type="application/atom+xml">
+  <meta name="og:type" content="website" />
+  <meta name="og:site_name" content="Another blog for bearqq" />
+  <meta name="og:title" content="更多ARM版linux下的事情。附带cubieboard修改版lubuntu，支持运行windows程序x86的exe" />
+  <meta name="og:description" content="上一篇文章写了如何把原生linux安装到sdcard里，并在A10机型运行，这次再说一说怎么运行别的linux版本。 移植别的linux 准备基础文件 机器cpu是ARM的，linux文件也需要是为arm架构编译的。很多linux发行版都有arm架构支持，我还是以debian/ubuntu来说 &hellip;" />
+  <meta name="og:url" content="http://bearqq.github.com/blog/2013/06/06/linux-a10-cubieboard/"/>
+  <meta name="url" content="http://bearqq.github.com/blog/2013/06/06/linux-a10-cubieboard/">
+  
+  <meta name="subject" content="A10Linuxcubieboardubuntu"/>
+  <meta name="category" content="A10Linuxcubieboardubuntu"/>
+  
+  <meta name="distribution" content="global">
+  <!--Fonts from Google"s Web font directory at http://google.com/webfonts -->
+<link href="http://fonts.googleapis.com/css?family=PT+Serif:regular,italic,bold,bolditalic" rel="stylesheet" type="text/css">
+<link href="http://fonts.googleapis.com/css?family=PT+Sans:regular,italic,bold,bolditalic" rel="stylesheet" type="text/css">
+
+  
+
+</head>
+
+<body   >
+  <nav role="navigation"><div class="navbar">
+  <div class="navbar-inner">
+    <a class="brand" href="/">Another blog for bearqq</a>
+    <ul class="nav">
+      <li><a href="/">Home</a></li>
+      <li><a href="/blog/archives">Archives</a></li>
+    </ul>
+    <ul class="nav" data-subscription="rss">
+      <li><a href="/atom.xml" rel="subscribe-rss" title="subscribe via RSS">RSS</a></li>
+      
+    </ul>
+      
+    <form class="navbar-form" action="http://google.com/search" method="get">
+      <fieldset role="search">
+        <input type="hidden" name="q" value="site:bearqq.github.com" />
+        <input class="span2" type="text" name="q" results="0" placeholder="Search"/>
+      </fieldset>
+    </form>
+      
+    
+  </div>
+</div>
+</nav>
+  <div class="wrapper_single">
+    <div class="container">
+      <article class="span8 offset2" role="article">
+        <div class="article-format">
+
+  <header>
+    
+      <h1 class="entry-title">更多ARM版linux下的事情。附带cubieboard修改版lubuntu，支持运行windows程序x86的exe</h1>
+    
+    
+      <p class="meta">
+        
+  
+
+
+  
+    <span class="byline author vcard">by <span class="fn">Bearqq</span></span>
+  
+
+ - 
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2013-06-06T09:20:00+00:00" pubdate data-updated="true">Jun 6<span>th</span>, 2013</time> - 
+        
+
+posted in
+<span class="categories">
+  
+    <a class='category' href='/blog/categories/a10/'>A10</a>, <a class='category' href='/blog/categories/linux/'>Linux</a>, <a class='category' href='/blog/categories/cubieboard/'>cubieboard</a>, <a class='category' href='/blog/categories/ubuntu/'>ubuntu</a>
+  
+</span>
+
+
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><p><a href="http://bearqq.github.io/blog/2013/05/05/lubuntu/">上一篇文章</a>写了如何把原生linux安装到sdcard里，并在A10机型运行，这次再说一说怎么运行别的linux版本。</p>
+
+<h3>移植别的linux</h3>
+
+<h2>准备基础文件</h2>
+
+<p>机器cpu是ARM的，linux文件也需要是为arm架构编译的。很多linux发行版都有arm架构支持，我还是以debian/ubuntu来说。<br/>
+首先是准备基础文件，可以参考<a href="http://blog.ooqoo.org/blog/2013/05/01/chroot-linux/">在chroot那篇文章</a>里写的debian和ubuntu的文件准备，也可以是现成的别的发行版的系统文件。这里就不详细讲了，debian系的那篇文章里写了，别的系的略麻烦。这里不一定要是官方的文件，比如<a href="http://cubieboard.org/">cubieboard</a>就有提供为他的开发板定制的A10的ubuntu系统，也可以是为pi提供的系统，或者别的开发板的都可以。<br/>
+唯一有一点区别的还是在架构上。arm分为armel和armhf，树莓派只支持armel，而A10可以跑armel和armhf，区别<a href="http://www.claudxiao.net/2012/02/armhf/">可以参考</a>A10当然选armhf的来做了。<br/>
+下载了文件系统部分之后，直接复制到sd卡的第二分区。什么？sd卡没有第二分区？参考<a href="http://bearqq.github.io/blog/2013/05/05/lubuntu/">上一篇文章</a>入门。</p>
+
+<h2>准备内核和驱动</h2>
+
+<p>系统文件准备了以后还需要添加内核和驱动。这里给出几个方案：<br/>
+首先是来自<a href="http://pengpod.com/dl/images/">pengpod编译的内核和驱动3.0.57</a>推荐用这个</p>
+
+<pre><code>http://pan.baidu.com/share/link?shareid=3149881464&amp;uk=1243757679
+</code></pre>
+
+<p>然后是我编译的3.0.8。里面不包含mali驱动</p>
+
+<pre><code>http://pan.baidu.com/share/link?shareid=3166131842&amp;uk=1243757679
+</code></pre>
+
+<p>当然也可以自己编译</p>
+
+<pre><code>apt-get install build-essential git
+apt-get install u-boot-tools (if u-boot-tools not found, try uboot-mkimage)
+编译器下载、解压、添加环境
+wget "https://sourcery.mentor.com/GNUToolchain/package5383/public/arm-none-linux-gnueabi/arm-2009q3-67-arm-none-linux-gnueabi-i686-pc-linux-gnu.tar.bz2"
+export PATH="/home/android/sc/arm-2009q3/bin/:$PATH"
+代码下载
+git clone git://github.com/linux-sunxi/linux-sunxi.git
+cd linux-allwinner
+git checkout lichee-3.0.8-sun4i
+编译
+make ARCH=arm sun4i_defconfig
+make ARCH=arm menuconfig
+make ARCH=arm CROSS_COMPILE=arm-none-linux-gnueabi- -j3 uImage
+make ARCH=arm CROSS_COMPILE=arm-none-linux-gnueabi- -j3 INSTALL_MOD_PATH=output modules
+make ARCH=arm CROSS_COMPILE=arm-none-linux-gnueabi- -j3 INSTALL_MOD_PATH=output modules_install
+输出文件在arch/arm/boot/uImage 和output文件夹下
+触摸支持需要禁用多点触摸，参考https://github.com/bearqq/A10-ubuntu-touch-ft5x
+非root访问网络需要修改配置文件# CONFIG_ANDROID_PARANOID_NETWORK is not set
+</code></pre>
+
+<h2>安装内核驱动</h2>
+
+<p>将得到的内核uImage复制到sd卡第一分区，将lib的文件放到第二分区的lib/modules下，如lib/modules/3.0.8/xxx</p>
+
+<h2>其他修正、添加</h2>
+
+<p>文件系统准备好以后，可以chroot进去做点事。参考：</p>
+
+<pre><code>sudo chroot /media/sdcard2/ /bin/bash
+</code></pre>
+
+<p>安装软键盘</p>
+
+<pre><code>apt-get install cellwriter
+</code></pre>
+
+<p>修改加载的驱动</p>
+
+<pre><code>vi /etc/modules
+disp
+lcd
+hdmi
+mali
+mali_drm
+ft5x_ts
+sun4i_keyboard
+ump
+8192cu
+</code></pre>
+
+<p>添加用户</p>
+
+<pre><code>自己弄。。
+</code></pre>
+
+<p>设置自动登录。如</p>
+
+<pre><code>/etc/lxdm/default.conf
+vi /etc/lxdm/default.conf
+autologin=username
+</code></pre>
+
+<p>也可能是：</p>
+
+<pre><code>vi /etc/lightdm/lightdm.conf 
+[SeatDefaults]
+autologin-user=username
+autologin-user-timeout=0
+greeter-session=lightdm-gtk-greeter
+user-session=Lubuntu
+</code></pre>
+
+<h2>别的呢？</h2>
+
+<p><a href="http://linux-sunxi.org/Main_Page">A10社区wiki</a>，可以找到一些已经做好的文件系统</p>
+
+<h2>系统更新</h2>
+
+<p>给出已经修改好的cubieboard的文件系统，包含了内核驱动，使用方法和<a href="http://bearqq.github.io/blog/2013/05/05/lubuntu/">上一篇文章</a>一样</p>
+
+<pre><code>http://pan.baidu.com/share/link?shareid=3284898657&amp;uk=1243757679
+</code></pre>
+
+<p>支持：<br/>
+wifi，触摸，mali驱动，2D加速，可以运行x86的exe文件*，更多</p>
+
+<p>不支持：<br/>
+多点触摸，更多</p>
+
+<p><img src="http://ww4.sinaimg.cn/large/45e13792gw1e5emkgdkd0j20sg0gote4.jpg" alt="" /></p>
+
+<p>arm下如何运行x86程序？<a href="http://bearqq.github.io/blog/2013/06/06/run-x86-dot-exe-in-arm-linux/">且听下回分解</a>。</p>
+</div>
+
+
+  <footer>
+    <p class="meta">
+      
+  
+
+
+  
+    <span class="byline author vcard">by <span class="fn">Bearqq</span></span>
+  
+
+
+      
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2013-06-06T09:20:00+00:00" pubdate data-updated="true">Jun 6<span>th</span>, 2013</time>
+      
+
+posted in
+<span class="categories">
+  
+    <a class='category' href='/blog/categories/a10/'>A10</a>, <a class='category' href='/blog/categories/linux/'>Linux</a>, <a class='category' href='/blog/categories/cubieboard/'>cubieboard</a>, <a class='category' href='/blog/categories/ubuntu/'>ubuntu</a>
+  
+</span>
+
+
+    </p>
+    
+      <div class="sharing">
+  
+  
+  
+</div>
+
+    
+    
+      <a class="pull-left" href="/blog/2013/05/05/lubuntu/" title="Previous Post: Lubuntu13.04 for A10 SD卡版本">&laquo; Lubuntu13.04 for A10 SD卡版本</a>
+    
+    
+      <a class="pull-right" href="/blog/2013/06/06/run-x86-dot-exe-in-arm-linux/" title="Next Post: 在arm架构linux中运行windows的X86程序exe">在arm架构linux中运行windows的X86程序exe &raquo;</a>
+    
+        
+         <!-- UY BEGIN -->
+<div id="uyan_frame"></div>
+<script type="text/javascript" id="UYScript" src="http://v1.uyan.cc/js/iframe.js?UYUserId=1772239" async=""></script>
+<!-- UY END -->
+
+        
+  </footer>
+
+</div>
+
+        
+      </article>
+    </div>
+  </div>
+  <div id="footer-widgets">
+  <div class="container">
+    <div class="row">
+  <div class="span3">
+    <h2>recent posts</h2>
+    <ul class="recent_posts">
+      
+        <li>
+          <a href="/blog/2013/06/06/run-x86-dot-exe-in-arm-linux/">在arm架构linux中运行windows的X86程序exe</a>
+        </li>
+      
+        <li>
+          <a href="/blog/2013/06/06/linux-a10-cubieboard/">更多ARM版linux下的事情。附带cubieboard修改版lubuntu，支持运行windows程序x86的exe</a>
+        </li>
+      
+        <li>
+          <a href="/blog/2013/05/05/lubuntu/">Lubuntu13.04 for A10 SD卡版本</a>
+        </li>
+      
+        <li>
+          <a href="/blog/2013/05/01/chroot-linux/">chroot方式在android（linux）中运行linux</a>
+        </li>
+      
+        <li>
+          <a href="/blog/2013/04/30/procedure/">Octopress安装过程摘要</a>
+        </li>
+      
+    </ul>
+    <h2><a href="/blog/archives">archives</a></h2>
+  </div>
+  <div class="span3">
+    
+
+  </div>
+  <div class="span4">
+    
+
+  </div>
+  <div class="span2">
+    <h2>found on</h2>
+
+<a href="https://github.com/bearqq/" rel="tooltip" title="Github"><img class="social_icon" title="Github" alt="github icon" src="/images/glyphicons_381_github.png"></a>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  </div>
+</div>
+
+  </div>
+</div>
+<footer class="footer">
+  <div class="container">
+    <p class="pull-left">
+  <a href="/">Another blog for bearqq</a>
+  - Copyright &copy; 2013 - Bearqq
+</p>
+<p class="pull-right">
+  <span>Powered by <a href="http://octopress.org/">Octopress</a>.</span>
+  
+    <span>Designed by <a href="http://www.AdrianArtiles.com">Adrian Artiles</a>.</span>
+  
+</p>
+
+  </div>
+</footer>
+
+  <script src="//ajax.googleapis.com/ajax/libs/jquery/1.7.2/jquery.min.js" type="text/javascript"></script>
+<script>window.jQuery || document.write('<script src="/javascripts/libs/jquery-1.7.2.min.js" type="text/javascript"><\/script>')</script>
+<script src="/javascripts/libs/bootstrap.min.js" type="text/javascript"></script>
+<script src="/javascripts/jquery.tweet.js" type="text/javascript"></script>
+<script src="/javascripts/jquery.instagram.js" type="text/javascript"></script>
+<script src="/javascripts/libs/jquery.masonry.min.js" type="text/javascript"></script>
+<script src="/javascripts/custom.js" type="text/javascript"></script>
+
+
+
+
+
+
+
+
+
+
+
+</body>
+</html>
