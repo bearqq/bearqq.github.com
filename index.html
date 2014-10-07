@@ -119,6 +119,92 @@
   <header>
     
       <!-- Now we're back to normal posts. Note the links used under href in both headers.--> 
+        <h1 class="entry-title"><a href="/blog/2014/10/07/octopress-in-windows/">Octopress in Windows</a></h1>
+        
+    
+    
+      <p class="meta">
+        
+  
+
+
+  
+    <span class="byline author vcard">by <span class="fn">Bearqq</span></span>
+  
+
+ - 
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2014-10-07T20:06:17+08:00" pubdate data-updated="true"></time> - 
+        
+
+
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><h1>终于搞定了windows下安装octopress</h1>
+
+<p>真是折磨人。简单写写，参考之前写的。</p>
+
+<p>先是安装git，在msysgit(<a href="https://github.com/msysgit/msysgit/releases">https://github.com/msysgit/msysgit/releases</a>)下载win版git，安的时候选择添加到系统path。</p>
+
+<p>然后克隆下源码
+    git clone git://github.com/imathis/octopress.git octopress
+    cd octopress</p>
+
+<p>安装ruby1.9.3，（<a href="http://rubyinstaller.org%EF%BC%89%E5%90%8C%E6%A0%B7%E6%B7%BB%E5%8A%A0%E5%88%B0path%E3%80%82%E5%B9%B6%E4%B8%94%E4%B8%8B%E8%BD%BD%E7%9B%B8%E5%90%8C%E7%89%88%E6%9C%ACdev%EF%BC%8C%E8%A7%A3%E5%8E%8B%E5%90%8E%E6%89%93%E5%BC%80msys.bat%EF%BC%8C%E8%BF%9B%E5%85%A5%E4%B9%8B%E5%89%8Doctopress%E7%9A%84%E6%96%87%E4%BB%B6%E5%A4%B9%E3%80%82">http://rubyinstaller.org%EF%BC%89%E5%90%8C%E6%A0%B7%E6%B7%BB%E5%8A%A0%E5%88%B0path%E3%80%82%E5%B9%B6%E4%B8%94%E4%B8%8B%E8%BD%BD%E7%9B%B8%E5%90%8C%E7%89%88%E6%9C%ACdev%EF%BC%8C%E8%A7%A3%E5%8E%8B%E5%90%8E%E6%89%93%E5%BC%80msys.bat%EF%BC%8C%E8%BF%9B%E5%85%A5%E4%B9%8B%E5%89%8Doctopress%E7%9A%84%E6%96%87%E4%BB%B6%E5%A4%B9%E3%80%82</a></p>
+
+<p>安装依赖<br/>
+    gem install bundler
+    bundle install
+找个主题安装，谷歌即可。然后安装<br/>
+如果默认主题，使用<br/>
+    rake install</p>
+
+<h1>如果出现提示Set the codepage to 65001 for Windows machines.</h1>
+
+<p>根据<a href="http://www.tomordonez.com/blog/2014/07/30/installing-octopress-in-windows-server/">老外的文章</a>，在octopress文件夹下<br/>
+    gem install jekyll -v 2.1.0
+编辑Gemfile为<br/>
+    gem &lsquo;jekyll&rsquo;, &lsquo;2.1.0&rsquo;
+然后<br/>
+    bundle install
+    bundle update jekyll
+最后编辑Rakefile，去掉如下字样
+    if (/cygwin &hellip;
+      puts &lsquo;## Set the codepage to 65001 for windows machines&rsquo;
+      &lsquo;chcp 65001&rsquo;
+    end</p>
+</div>
+  
+  
+  
+
+
+</div>
+
+      </article>
+    
+    
+      <article class="span4">
+        <div class="article-format">
+
+  <header>
+    
+      <!-- Now we're back to normal posts. Note the links used under href in both headers.--> 
         <h1 class="entry-title"><a href="/blog/2013/06/06/run-x86-dot-exe-in-arm-linux/">在arm架构linux中运行windows的X86程序exe</a></h1>
         
     
@@ -994,6 +1080,10 @@ posted in
     <ul class="recent_posts">
       
         <li>
+          <a href="/blog/2014/10/07/octopress-in-windows/">octopress in windows </a>
+        </li>
+      
+        <li>
           <a href="/blog/2013/06/06/run-x86-dot-exe-in-arm-linux/">在arm架构linux中运行windows的X86程序exe</a>
         </li>
       
@@ -1007,10 +1097,6 @@ posted in
       
         <li>
           <a href="/blog/2013/05/01/chroot-linux/">chroot方式在android（linux）中运行linux</a>
-        </li>
-      
-        <li>
-          <a href="/blog/2013/04/30/procedure/">Octopress安装过程摘要</a>
         </li>
       
     </ul>

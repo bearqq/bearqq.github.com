@@ -3,6 +3,14 @@
   
   
   <url>
+    <loc>http://blog.ooQoo.ovh/blog/2014/10/07/octopress-in-windows/</loc>
+    
+    <lastmod>2014-10-07T20:06:17+08:00</lastmod>
+    
+    <priority>0.8</priority>
+  </url>
+  
+  <url>
     <loc>http://blog.ooQoo.ovh/blog/2013/06/06/run-x86-dot-exe-in-arm-linux/</loc>
     
     <lastmod>2013-06-06T10:29:00+08:00</lastmod>
@@ -53,21 +61,21 @@
   
   <url>
     <loc>http://blog.ooQoo.ovh/blog/archives/</loc>
-    <lastmod>2014-10-07T20:02:37+08:00</lastmod>
+    <lastmod>2014-10-07T20:29:08+08:00</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.7</priority>
   </url>
   
   <url>
     <loc>http://blog.ooQoo.ovh/</loc>
-    <lastmod>2014-10-07T20:02:37+08:00</lastmod>
+    <lastmod>2014-10-07T20:29:08+08:00</lastmod>
     <changefreq>weekly</changefreq>
     <priority>1.0</priority>
   </url>
   
   <url>
     <loc>http://blog.ooQoo.ovh/blog/categories/</loc>
-    <lastmod>2014-10-07T20:02:37+08:00</lastmod>
+    <lastmod>2014-10-07T20:29:08+08:00</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.7</priority>
   </url>
