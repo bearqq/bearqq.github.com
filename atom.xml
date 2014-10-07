@@ -2,10 +2,10 @@
 <feed xmlns="http://www.w3.org/2005/Atom">
 
   <title><![CDATA[Another blog for bearqq]]></title>
-  <link href="http://bearqq.github.io/atom.xml" rel="self"/>
-  <link href="http://bearqq.github.io/"/>
-  <updated>2014-10-07T19:20:51+08:00</updated>
-  <id>http://bearqq.github.io/</id>
+  <link href="http://blog.ooQoo.ovh/atom.xml" rel="self"/>
+  <link href="http://blog.ooQoo.ovh/"/>
+  <updated>2014-10-07T20:02:37+08:00</updated>
+  <id>http://blog.ooQoo.ovh/</id>
   <author>
     <name><![CDATA[Bearqq]]></name>
     
@@ -15,9 +15,9 @@
   
   <entry>
     <title type="html"><![CDATA[在arm架构linux中运行windows的X86程序exe]]></title>
-    <link href="http://bearqq.github.io/blog/2013/06/06/run-x86-dot-exe-in-arm-linux/"/>
+    <link href="http://blog.ooQoo.ovh/blog/2013/06/06/run-x86-dot-exe-in-arm-linux/"/>
     <updated>2013-06-06T10:29:00+08:00</updated>
-    <id>http://bearqq.github.io/blog/2013/06/06/run-x86-dot-exe-in-arm-linux</id>
+    <id>http://blog.ooQoo.ovh/blog/2013/06/06/run-x86-dot-exe-in-arm-linux</id>
     <content type="html"><![CDATA[<p>先来几句科普。A10是arm架构的cpu，就算你运行了linux也运行不了x86的程序。<br/>
 linux显然不能直接运行windows的x86程序，因为<em>系统不同怎么谈恋爱？</em><br/>
 那就有人要说了。这不可以那不可以，那不成标题党了么？当然不是，我就是要在arm架构的cpu运行着arm架构的linux中运行x86架构的windows程序。</p>
@@ -78,9 +78,9 @@ DEBIAN_FRONTEND=noninteractive DEBCONF_NONINTERACTIVE_SEEN=true LC_ALL=C LANGUAG
   
   <entry>
     <title type="html"><![CDATA[更多ARM版linux下的事情。附带cubieboard修改版lubuntu，支持运行windows程序x86的exe]]></title>
-    <link href="http://bearqq.github.io/blog/2013/06/06/linux-a10-cubieboard/"/>
+    <link href="http://blog.ooQoo.ovh/blog/2013/06/06/linux-a10-cubieboard/"/>
     <updated>2013-06-06T09:20:00+08:00</updated>
-    <id>http://bearqq.github.io/blog/2013/06/06/linux-a10-cubieboard</id>
+    <id>http://blog.ooQoo.ovh/blog/2013/06/06/linux-a10-cubieboard</id>
     <content type="html"><![CDATA[<p><a href="http://bearqq.github.io/blog/2013/05/05/lubuntu/">上一篇文章</a>写了如何把原生linux安装到sdcard里，并在A10机型运行，这次再说一说怎么运行别的linux版本。</p>
 
 <h3>移植别的linux</h3>
@@ -177,9 +177,9 @@ wifi，触摸，mali驱动，2D加速，可以运行x86的exe文件*，更多</p
   
   <entry>
     <title type="html"><![CDATA[Lubuntu13.04 for A10 SD卡版本]]></title>
-    <link href="http://bearqq.github.io/blog/2013/05/05/lubuntu/"/>
+    <link href="http://blog.ooQoo.ovh/blog/2013/05/05/lubuntu/"/>
     <updated>2013-05-05T09:45:00+08:00</updated>
-    <id>http://bearqq.github.io/blog/2013/05/05/lubuntu</id>
+    <id>http://blog.ooQoo.ovh/blog/2013/05/05/lubuntu</id>
     <content type="html"><![CDATA[<p>之前放出了双系统版本，但是那个版本的linux分区被限制在1G，这是全智定义的限制。而且那个固件是vi10精英专用固件，想做通刷比较麻烦，因为固件占据了recovery的分区</p>
 
 <p>那么今天要说的是sd卡版本，没有分区大小的限制，而且A10机型可通用。sd卡理论上2G够用，最好是4G以上的，我用的8G的卡测试。sd卡早就白菜价了。。</p>
@@ -235,9 +235,9 @@ flash  多点触摸  更多。。</p>
   
   <entry>
     <title type="html"><![CDATA[chroot方式在android（linux）中运行linux]]></title>
-    <link href="http://bearqq.github.io/blog/2013/05/01/chroot-linux/"/>
+    <link href="http://blog.ooQoo.ovh/blog/2013/05/01/chroot-linux/"/>
     <updated>2013-05-01T11:52:00+08:00</updated>
-    <id>http://bearqq.github.io/blog/2013/05/01/chroot-linux</id>
+    <id>http://blog.ooQoo.ovh/blog/2013/05/01/chroot-linux</id>
     <content type="html"><![CDATA[<h1>这是什么</h1>
 
 <p>有时候，需要在一个linux里运行另外一个linux。<br/>
@@ -385,9 +385,9 @@ echo "127.0.0.1 localhost" &gt; $mnt/etc/hosts
   
   <entry>
     <title type="html"><![CDATA[Octopress安装过程摘要]]></title>
-    <link href="http://bearqq.github.io/blog/2013/04/30/procedure/"/>
+    <link href="http://blog.ooQoo.ovh/blog/2013/04/30/procedure/"/>
     <updated>2013-04-30T22:51:00+08:00</updated>
-    <id>http://bearqq.github.io/blog/2013/04/30/procedure</id>
+    <id>http://blog.ooQoo.ovh/blog/2013/04/30/procedure</id>
     <content type="html"><![CDATA[<h1>首先是一枚linux</h1>
 
 <p>准备一枚linux是比较麻烦的事情，也有文章说windows可以，如<a href="http://sinosmond.github.io/blog/2012/03/12/install-and-deploy-octopress-to-github-on-windows7-from-scratch/">尝试win7的同学,</a>我也试了一下，不过在bundle install的时候报编译错误，然后就没有然后了。</p>
@@ -557,9 +557,9 @@ preview可以内建一个服务器，端口4000，去浏览器里就能看到了
   
   <entry>
     <title type="html"><![CDATA[Hello world!]]></title>
-    <link href="http://bearqq.github.io/blog/2013/04/30/hello-world-slash/"/>
+    <link href="http://blog.ooQoo.ovh/blog/2013/04/30/hello-world-slash/"/>
     <updated>2013-04-30T20:04:00+08:00</updated>
-    <id>http://bearqq.github.io/blog/2013/04/30/hello-world-slash</id>
+    <id>http://blog.ooQoo.ovh/blog/2013/04/30/hello-world-slash</id>
     <content type="html"><![CDATA[<p>What happened?</p>
 ]]></content>
   </entry>

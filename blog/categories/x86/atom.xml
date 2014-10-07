@@ -2,10 +2,10 @@
 <feed xmlns="http://www.w3.org/2005/Atom">
 
   <title><![CDATA[Category: x86 | Another blog for bearqq]]></title>
-  <link href="http://bearqq.github.io/blog/categories/x86/atom.xml" rel="self"/>
-  <link href="http://bearqq.github.io/"/>
-  <updated>2014-10-07T19:20:51+08:00</updated>
-  <id>http://bearqq.github.io/</id>
+  <link href="http://blog.ooQoo.ovh/blog/categories/x86/atom.xml" rel="self"/>
+  <link href="http://blog.ooQoo.ovh/"/>
+  <updated>2014-10-07T20:02:37+08:00</updated>
+  <id>http://blog.ooQoo.ovh/</id>
   <author>
     <name><![CDATA[Bearqq]]></name>
     
@@ -15,9 +15,9 @@
   
   <entry>
     <title type="html"><![CDATA[在arm架构linux中运行windows的X86程序exe]]></title>
-    <link href="http://bearqq.github.io/blog/2013/06/06/run-x86-dot-exe-in-arm-linux/"/>
+    <link href="http://blog.ooQoo.ovh/blog/2013/06/06/run-x86-dot-exe-in-arm-linux/"/>
     <updated>2013-06-06T10:29:00+08:00</updated>
-    <id>http://bearqq.github.io/blog/2013/06/06/run-x86-dot-exe-in-arm-linux</id>
+    <id>http://blog.ooQoo.ovh/blog/2013/06/06/run-x86-dot-exe-in-arm-linux</id>
     <content type="html"><![CDATA[<p>先来几句科普。A10是arm架构的cpu，就算你运行了linux也运行不了x86的程序。<br/>
 linux显然不能直接运行windows的x86程序，因为<em>系统不同怎么谈恋爱？</em><br/>
 那就有人要说了。这不可以那不可以，那不成标题党了么？当然不是，我就是要在arm架构的cpu运行着arm架构的linux中运行x86架构的windows程序。</p>

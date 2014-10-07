@@ -2,10 +2,10 @@
 <feed xmlns="http://www.w3.org/2005/Atom">
 
   <title><![CDATA[Category: cubieboard | Another blog for bearqq]]></title>
-  <link href="http://bearqq.github.io/blog/categories/cubieboard/atom.xml" rel="self"/>
-  <link href="http://bearqq.github.io/"/>
-  <updated>2014-10-07T19:20:51+08:00</updated>
-  <id>http://bearqq.github.io/</id>
+  <link href="http://blog.ooQoo.ovh/blog/categories/cubieboard/atom.xml" rel="self"/>
+  <link href="http://blog.ooQoo.ovh/"/>
+  <updated>2014-10-07T20:02:37+08:00</updated>
+  <id>http://blog.ooQoo.ovh/</id>
   <author>
     <name><![CDATA[Bearqq]]></name>
     
@@ -15,9 +15,9 @@
   
   <entry>
     <title type="html"><![CDATA[更多ARM版linux下的事情。附带cubieboard修改版lubuntu，支持运行windows程序x86的exe]]></title>
-    <link href="http://bearqq.github.io/blog/2013/06/06/linux-a10-cubieboard/"/>
+    <link href="http://blog.ooQoo.ovh/blog/2013/06/06/linux-a10-cubieboard/"/>
     <updated>2013-06-06T09:20:00+08:00</updated>
-    <id>http://bearqq.github.io/blog/2013/06/06/linux-a10-cubieboard</id>
+    <id>http://blog.ooQoo.ovh/blog/2013/06/06/linux-a10-cubieboard</id>
     <content type="html"><![CDATA[<p><a href="http://bearqq.github.io/blog/2013/05/05/lubuntu/">上一篇文章</a>写了如何把原生linux安装到sdcard里，并在A10机型运行，这次再说一说怎么运行别的linux版本。</p>
 
 <h3>移植别的linux</h3>

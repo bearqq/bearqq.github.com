@@ -2,10 +2,10 @@
 <feed xmlns="http://www.w3.org/2005/Atom">
 
   <title><![CDATA[Category: sdcard | Another blog for bearqq]]></title>
-  <link href="http://bearqq.github.io/blog/categories/sdcard/atom.xml" rel="self"/>
-  <link href="http://bearqq.github.io/"/>
-  <updated>2014-10-07T19:20:51+08:00</updated>
-  <id>http://bearqq.github.io/</id>
+  <link href="http://blog.ooQoo.ovh/blog/categories/sdcard/atom.xml" rel="self"/>
+  <link href="http://blog.ooQoo.ovh/"/>
+  <updated>2014-10-07T20:02:37+08:00</updated>
+  <id>http://blog.ooQoo.ovh/</id>
   <author>
     <name><![CDATA[Bearqq]]></name>
     
@@ -15,9 +15,9 @@
   
   <entry>
     <title type="html"><![CDATA[Lubuntu13.04 for A10 SD卡版本]]></title>
-    <link href="http://bearqq.github.io/blog/2013/05/05/lubuntu/"/>
+    <link href="http://blog.ooQoo.ovh/blog/2013/05/05/lubuntu/"/>
     <updated>2013-05-05T09:45:00+08:00</updated>
-    <id>http://bearqq.github.io/blog/2013/05/05/lubuntu</id>
+    <id>http://blog.ooQoo.ovh/blog/2013/05/05/lubuntu</id>
     <content type="html"><![CDATA[<p>之前放出了双系统版本，但是那个版本的linux分区被限制在1G，这是全智定义的限制。而且那个固件是vi10精英专用固件，想做通刷比较麻烦，因为固件占据了recovery的分区</p>
 
 <p>那么今天要说的是sd卡版本，没有分区大小的限制，而且A10机型可通用。sd卡理论上2G够用，最好是4G以上的，我用的8G的卡测试。sd卡早就白菜价了。。</p>

@@ -2,10 +2,10 @@
 <feed xmlns="http://www.w3.org/2005/Atom">
 
   <title><![CDATA[Category: octopress | Another blog for bearqq]]></title>
-  <link href="http://bearqq.github.io/blog/categories/octopress/atom.xml" rel="self"/>
-  <link href="http://bearqq.github.io/"/>
-  <updated>2014-10-07T19:20:51+08:00</updated>
-  <id>http://bearqq.github.io/</id>
+  <link href="http://blog.ooQoo.ovh/blog/categories/octopress/atom.xml" rel="self"/>
+  <link href="http://blog.ooQoo.ovh/"/>
+  <updated>2014-10-07T20:02:37+08:00</updated>
+  <id>http://blog.ooQoo.ovh/</id>
   <author>
     <name><![CDATA[Bearqq]]></name>
     
@@ -15,9 +15,9 @@
   
   <entry>
     <title type="html"><![CDATA[Octopress安装过程摘要]]></title>
-    <link href="http://bearqq.github.io/blog/2013/04/30/procedure/"/>
+    <link href="http://blog.ooQoo.ovh/blog/2013/04/30/procedure/"/>
     <updated>2013-04-30T22:51:00+08:00</updated>
-    <id>http://bearqq.github.io/blog/2013/04/30/procedure</id>
+    <id>http://blog.ooQoo.ovh/blog/2013/04/30/procedure</id>
     <content type="html"><![CDATA[<h1>首先是一枚linux</h1>
 
 <p>准备一枚linux是比较麻烦的事情，也有文章说windows可以，如<a href="http://sinosmond.github.io/blog/2012/03/12/install-and-deploy-octopress-to-github-on-windows7-from-scratch/">尝试win7的同学,</a>我也试了一下，不过在bundle install的时候报编译错误，然后就没有然后了。</p>

@@ -2,10 +2,10 @@
 <feed xmlns="http://www.w3.org/2005/Atom">
 
   <title><![CDATA[Category: test | Another blog for bearqq]]></title>
-  <link href="http://bearqq.github.io/blog/categories/test/atom.xml" rel="self"/>
-  <link href="http://bearqq.github.io/"/>
-  <updated>2014-10-07T19:20:51+08:00</updated>
-  <id>http://bearqq.github.io/</id>
+  <link href="http://blog.ooQoo.ovh/blog/categories/test/atom.xml" rel="self"/>
+  <link href="http://blog.ooQoo.ovh/"/>
+  <updated>2014-10-07T20:02:37+08:00</updated>
+  <id>http://blog.ooQoo.ovh/</id>
   <author>
     <name><![CDATA[Bearqq]]></name>
     
@@ -15,9 +15,9 @@
   
   <entry>
     <title type="html"><![CDATA[Hello world!]]></title>
-    <link href="http://bearqq.github.io/blog/2013/04/30/hello-world-slash/"/>
+    <link href="http://blog.ooQoo.ovh/blog/2013/04/30/hello-world-slash/"/>
     <updated>2013-04-30T20:04:00+08:00</updated>
-    <id>http://bearqq.github.io/blog/2013/04/30/hello-world-slash</id>
+    <id>http://blog.ooQoo.ovh/blog/2013/04/30/hello-world-slash</id>
     <content type="html"><![CDATA[<p>What happened?</p>
 ]]></content>
   </entry>
