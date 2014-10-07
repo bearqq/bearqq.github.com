@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+
+  <title><![CDATA[Category: 原生linux | Another blog for bearqq]]></title>
+  <link href="http://bearqq.github.io/blog/categories/yuan-sheng-linux/atom.xml" rel="self"/>
+  <link href="http://bearqq.github.io/"/>
+  <updated>2014-10-07T19:20:51+08:00</updated>
+  <id>http://bearqq.github.io/</id>
+  <author>
+    <name><![CDATA[Bearqq]]></name>
+    
+  </author>
+  <generator uri="http://octopress.org/">Octopress</generator>
+
+  
+  <entry>
+    <title type="html"><![CDATA[Lubuntu13.04 for A10 SD卡版本]]></title>
+    <link href="http://bearqq.github.io/blog/2013/05/05/lubuntu/"/>
+    <updated>2013-05-05T09:45:00+08:00</updated>
+    <id>http://bearqq.github.io/blog/2013/05/05/lubuntu</id>
+    <content type="html"><![CDATA[<p>之前放出了双系统版本，但是那个版本的linux分区被限制在1G，这是全智定义的限制。而且那个固件是vi10精英专用固件，想做通刷比较麻烦，因为固件占据了recovery的分区</p>
+
+<p>那么今天要说的是sd卡版本，没有分区大小的限制，而且A10机型可通用。sd卡理论上2G够用，最好是4G以上的，我用的8G的卡测试。sd卡早就白菜价了。。</p>
+
+<p>lubuntu是lxde桌面的ubuntu衍生版，内存占用更低，更适合。不要吐槽为什么有人叫他撸帮图</p>
+
+<p>首先得下载下面地址的4个文件<br/>
+    <a href="http://pan.baidu.com/share/link?shareid=518752&amp;uk=1243757679">http://pan.baidu.com/share/link?shareid=518752&amp;uk=1243757679</a></p>
+
+<p>安装berryboot.apk，插上sd卡。<br/>
+打开berryboot，用内置的安装程序直接安装到卡上。他会完全格式化sd卡，<strong>sd卡内所有文件将会丢失</strong>，并分为两个分区，一个60m左右的fat，一个为linux准备的分区。分区内的文件待会儿会删掉，用它就是来简化格式化和写入启动信息的。<br/>
+拔下sd卡，将另外3个文件放到内置空间的根目录。</p>
+
+<p>打开better terminal，或者使用adb shell，或者用ssh连接进入shell<br/>
+插入sd卡，稍带几秒后在shell里执行以下语句<br/>
+挂载sd卡。注：挂载点一定要是这几个，因为压缩包里包含的是完整目录
+    mkdir /mnt/sd1
+    mkdir /mnt/sd2
+    busybox mount /dev/block/mmcblk0p1 /mnt/sd1
+    busybox mount /dev/block/mmcblk0p2 /mnt/sd2
+    rm -r /mnt/sd1/<em>
+    rm -r /mnt/sd2/</em>
+复制文件入sd卡
+    busybox cp /sdcard/busybox /data
+    chmod 777 /data/busybox
+    /data/busybox tar xzvf /sdcard/sd1.tgz -C /
+    /data/busybox tar xzvf /sdcard/sd2.tgz -C /
+做机型适配。如果机型是vi10精英可以省略如下几行
+    mkdir /mnt/nand
+    busybox mount /dev/block/nanda /mnt/nand
+    busybox cp /mnt/nand/script.bin /mnt/sd1/
+    busybox cp /mnt/sd1/script.bin /mnt/sd1/evb.bin</p>
+
+<p>关机。
+开机时，如果sd卡在机器中，机器会启动到lubuntu，反之启动到正常的android。</p>
+
+<p>root用户密码lu
+lubuntu用户密码lu
+平时请用lubuntu这个账户否则浏览器会提示什么我可不告诉你。登陆不会要密码。如果不想外接键盘，可以打开里面的cellwriter，也就是软键盘。</p>
+
+<p>正常使用的功能：<br/>
+wifi 触摸屏 更多。。</p>
+
+<p>不可使用的功能：<br/>
+flash  多点触摸  更多。。</p>
+
+<p>附图：<br/>
+<img src="http://ww1.sinaimg.cn/large/a74eed94jw1e4dkr49qo9j20sg0gotdg.jpg" alt="Lubuntu" /></p>
+
+<p>更多linux的信息在下一个帖子<a href="http://1bearqq.github.io/blog/2013/06/06/linux-a10-cubieboard/"></a></p>
+]]></content>
+  </entry>
+  
+</feed>

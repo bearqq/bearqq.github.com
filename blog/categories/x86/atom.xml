@@ -1,0 +1,79 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+
+  <title><![CDATA[Category: x86 | Another blog for bearqq]]></title>
+  <link href="http://bearqq.github.io/blog/categories/x86/atom.xml" rel="self"/>
+  <link href="http://bearqq.github.io/"/>
+  <updated>2014-10-07T19:20:51+08:00</updated>
+  <id>http://bearqq.github.io/</id>
+  <author>
+    <name><![CDATA[Bearqq]]></name>
+    
+  </author>
+  <generator uri="http://octopress.org/">Octopress</generator>
+
+  
+  <entry>
+    <title type="html"><![CDATA[在arm架构linux中运行windows的X86程序exe]]></title>
+    <link href="http://bearqq.github.io/blog/2013/06/06/run-x86-dot-exe-in-arm-linux/"/>
+    <updated>2013-06-06T10:29:00+08:00</updated>
+    <id>http://bearqq.github.io/blog/2013/06/06/run-x86-dot-exe-in-arm-linux</id>
+    <content type="html"><![CDATA[<p>先来几句科普。A10是arm架构的cpu，就算你运行了linux也运行不了x86的程序。<br/>
+linux显然不能直接运行windows的x86程序，因为<em>系统不同怎么谈恋爱？</em><br/>
+那就有人要说了。这不可以那不可以，那不成标题党了么？当然不是，我就是要在arm架构的cpu运行着arm架构的linux中运行x86架构的windows程序。</p>
+
+<h2>原理</h2>
+
+<p>首先，为了在linux理运行x86的windows程序，我们需要一个中间层。当然不需要自己写，因为我们有wine。wine的x86版可以在x86架构的linux下运行x86的windows程序。<strong><em>但是wine的arm版只能在arm架构的linux下运行arm架构的windows程序！</em></strong><br/>
+有了wine，我们还需要x86的linux。当然不能直接在arm的机器上运行，那么我们需要qemu。不需要运行整个系统，我们只需要运行i386-linux-user，chroot到x86的linux里运行即可。<br/>
+更简单的说就是：
+    arm-linux → qemu-user → i386-linux → wine → windows.exe
+不要问我效率，问效率的都是渣渣。引用国外某孩子的话：very playable</p>
+
+<h2>实现</h2>
+
+<p>理想是美好的，现实是残酷的。qemu有致命bug，导致直接apt-get安装的qemu根本没法用，提示syscalls.c报错。要不是这个，这边文章早n个月就出来了。。<br/>
+解决方案就是打补丁自行编译。<a href="http://forum.winehq.org/viewtopic.php?f=2&amp;t=17701&amp;start=25">补丁参考</a>。<br/>
+由于版本更替，目测得手动去打补丁。帖子里两个补丁都得打。<br/>
+大哥，有打好补丁编译好的版本么？当然有-。-
+    <a href="http://pan.baidu.com/share/link?shareid=3480557522&amp;uk=1243757679">http://pan.baidu.com/share/link?shareid=3480557522&amp;uk=1243757679</a>
+放之于
+    /usr/bin/qemu-i386-static</p>
+
+<p>有了qemu这座桥，下面就是i386-linux了。这里需要一个完整的i386的linux基础文件。。需要从我自己电脑考出来么？当然不用~多年前就准备好的i386-debian纯净版可以出场了。
+    <a href="https://bearsigh.googlecode.com/files/i386%20pure.tar.gz">https://bearsigh.googlecode.com/files/i386%20pure.tar.gz</a>
+使用方法参考<a href="http://bearqq.github.io/blog/2013/05/01/chroot-linux/"></a><br/>
+这里除了要第二阶段展开等过程以外，还要安装一些东西。可以通过安装wine和lxde来解决对包的依赖。我安装了apt-get install lxde和一些字体。<br/>
+然后去<a href="http://www.playonlinux.com/wine/binaries/linux-x86/">这里</a>下载一个最新的wine包，解压出来放到x86系统分区某处，如&#8221;/home/1.5.30-1.5.30-1/&ldquo;。</p>
+
+<p>有了i386-linux和wine这座桥了，最后就达到windows.exe了。哈<br/>
+贴上我的脚本</p>
+
+<p>chrootx86：<br/>
+    sysctl -w net.ipv4.ip_forward=1</p>
+
+<pre><code>mount -t binfmt_misc none /proc/sys/fs/binfmt_misc
+echo -1 &gt; /proc/sys/fs/binfmt_misc/status
+echo ':i386:M::\x7fELF\x01\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x02\x00\x03:\xff\xff\xff\xff\xff\xfe\xfe\xff\xff\xff\xff\xff\xff\xff\xff\xff\xfb\xff\xff:/usr/bin/qemu-i386-static:' &gt; /proc/sys/fs/binfmt_misc/register
+
+
+
+#DEBIAN_FRONTEND=noninteractive DEBCONF_NONINTERACTIVE_SEEN=true LC_ALL=C LANGUAGE=C LANG=C chroot /home/tp/x86/debian/ /bin/bash
+export PATH=/home/1.5.30-1.5.30-1/bin:$PATH
+
+DEBIAN_FRONTEND=noninteractive DEBCONF_NONINTERACTIVE_SEEN=true LC_ALL=C LANGUAGE=C LANG=C chroot /home/tp/x86/debian/ echo ':DOSWin:M::MZ::/home/1.5.30-1.5.30-1/bin/wine:' &gt;/proc/sys/fs/binfmt_misc/register
+
+export WINEPREFIX=/root/wineprefix
+
+DEBIAN_FRONTEND=noninteractive DEBCONF_NONINTERACTIVE_SEEN=true LC_ALL=C LANGUAGE=C LANG=C chroot /home/tp/x86/debian/ /home/1.5.30-1.5.30-1/bin/wine $@
+</code></pre>
+
+<p>我把x86的debian放到了&#8221;/home/tp/x86/debian/&ldquo;，自行修改脚本。<br/>
+有效果图么？没图我说个jb！<br/>
+<img src="http://ww2.sinaimg.cn/large/45e13792gw1e5elcs4mpfj20sg0goad5.jpg" alt="" />
+<img src="http://ww4.sinaimg.cn/large/45e13792gw1e5emjwkkmdj20sg0gon0d.jpg" alt="" />
+<img src="http://ww4.sinaimg.cn/large/45e13792gw1e5emkgdkd0j20sg0gote4.jpg" alt="" /></p>
+]]></content>
+  </entry>
+  
+</feed>

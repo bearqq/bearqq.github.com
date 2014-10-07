@@ -1,0 +1,188 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+
+  <title><![CDATA[Category: octopress | Another blog for bearqq]]></title>
+  <link href="http://bearqq.github.io/blog/categories/octopress/atom.xml" rel="self"/>
+  <link href="http://bearqq.github.io/"/>
+  <updated>2014-10-07T19:20:51+08:00</updated>
+  <id>http://bearqq.github.io/</id>
+  <author>
+    <name><![CDATA[Bearqq]]></name>
+    
+  </author>
+  <generator uri="http://octopress.org/">Octopress</generator>
+
+  
+  <entry>
+    <title type="html"><![CDATA[Octopress安装过程摘要]]></title>
+    <link href="http://bearqq.github.io/blog/2013/04/30/procedure/"/>
+    <updated>2013-04-30T22:51:00+08:00</updated>
+    <id>http://bearqq.github.io/blog/2013/04/30/procedure</id>
+    <content type="html"><![CDATA[<h1>首先是一枚linux</h1>
+
+<p>准备一枚linux是比较麻烦的事情，也有文章说windows可以，如<a href="http://sinosmond.github.io/blog/2012/03/12/install-and-deploy-octopress-to-github-on-windows7-from-scratch/">尝试win7的同学,</a>我也试了一下，不过在bundle install的时候报编译错误，然后就没有然后了。</p>
+
+<p>我这里用的linux是arm版的ubuntu，先略过，只给一个连接以前在google code写的一个<a href="http://bearsigh.googlecode.com/files/i386pure.txt">debian的安装</a></p>
+
+<h1>安装前的准备</h1>
+
+<p>先安装git和ruby。ruby目前要求版本1.9.3，<a href="http://octopress.org/docs/setup/">详细查看</a>
+命令：
+    apt-get update;apt-get upgrade
+    apt-get install git ruby1.9.3
+sudo神马的，自己加。chroot表示没有
+    ruby &ndash;version
+版本不对的话，参考官网解决</p>
+
+<h1>安装octopress到本地</h1>
+
+<p>首先找个像样的文件夹，然后
+    git clone git://github.com/imathis/octopress.git octopress
+    cd octopress
+装依赖
+    gem install bundler
+    bundle install
+下面就是主题了，如果是默认主题的话就简单
+    rake install</p>
+
+<h2>安装现成主题</h2>
+
+<p>混蛋，当然是先要找个主题了，去<a href="https://github.com/imathis/octopress/wiki/3rd-Party-Octopress-Themes">这里</a>挑一个看得上的，找到其git地址。然后
+    cd octopress
+    git clone git://xxxxxx .themes/themename
+    rake install [&lsquo;themename&rsquo;]
+    rake generate</p>
+
+<h2>配置octopress</h2>
+
+<p>按理说应该先配置吧-。-<br/>
+配置文件_config.yml，可以vi编辑之。文件末尾有很多<strong>根本不存在的网站</strong>可以把那些值改成false而华丽丽的无视掉。<br/>
+还有个要配置的，就是你的github了。去github新建个账号，比如bearqq。<br/>
+然后建个repo叫bearqq.github.com，前面必须是你的名字。然后设置一下ssh的key，这个不想多说。<br/>
+然后嘛
+    rake setup_github_pages
+他会问你一些问题，如实回答即可。</p>
+
+<h2>少年，来上第一发</h2>
+
+<p>来写文章吧少年
+    rake new_post[&ldquo;title&rdquo;]
+然后他就会提示在哪儿哪儿生成了个交神马玩意的xxx.md文件，之后就去编辑一下吧。语法自己网上搜，没什么语法。尽可以进去以后打个hello world然后滚蛋。<br/>
+话说，烦人的地方也在这里。有中文，需要用utf-8保存文件。如果生成文章的时候出错，那就在终端下执行
+    export LANG=&ldquo;C.UTF-8&rdquo;
+    export LC_ALL=&ldquo;C.UTF-8&rdquo;
+可能需要做得事情
+    apt-get install language-pack-zh language-pack-zh-base language-support-zh
+    apt-get install locales
+    dpkg-reconfigure locales
+    export LC_ALL=&ldquo;zh_CN.UTF-8&rdquo;</p>
+
+<h2>生成文章</h2>
+
+<p>每次写完神马的，都要做这件事
+    rake generate
+    rake preview
+preview可以内建一个服务器，端口4000，去浏览器里就能看到了。如果满意了的话，提交到github吧。
+    rake deploy
+第一次deploy要过十几分钟才能访问bearqq.github.com，后面会即使更新。</p>
+
+<h2>添加评论</h2>
+
+<p>尼玛一个博客没有评论敢出来溜达？？？</p>
+
+<table>
+    <tr>
+        <td>
+            &#31867;&#22411;
+        </td>
+        <td>
+            &#22269;&#22806;&#26381;&#21153;
+        </td>
+        <td>
+            &#22269;&#20869;&#26381;&#21153;
+        </td>
+    </tr>
+    <tr>
+        <td>
+            Feed&#28903;&#21046; 
+        </td>
+        <td>
+            FeedBurner 
+        </td>
+        <td>
+            FeedSky
+        </td>
+    </tr>
+    <tr>
+        <td>
+            &#20998;&#20139;&#21040; 
+        </td>
+        <td>
+                AddThis 
+        </td>
+        <td>
+            JiaThis
+        </td>
+    </tr>
+    <tr>
+        <td>
+            &#24494;&#21338; 
+        </td>
+        <td>
+                Twitter 
+        </td>
+        <td>
+            weibo.com
+        </td>
+    </tr>
+    <tr>
+        <td>
+            &#32593;&#32476;&#20070;&#31614; 
+        </td>
+        <td>
+            Delicious, Google Bookmarks 
+        </td>
+        <td>
+             QQ&#20070;&#31614;, &#30334;&#24230;&#25628;&#34255;
+        </td>
+    </tr>
+    <tr>
+        <td>
+            &#32593;&#32476;&#22270;&#24202; 
+        </td>
+        <td>
+            Flickr 
+        </td>
+        <td>
+                yupoo , POCO
+        </td>
+    </tr>
+    <tr>
+        <td>
+            &#32593;&#32476;&#35780;&#35770; 
+        </td>
+        <td>
+            Disqus 
+        </td>
+        <td>
+                &#21451;&#35328;
+        </td>
+    </tr>
+</table>
+
+
+<p>都同理可做，这里我用uyan.cc，因为代码简单-。-<br/>
+去source/_includes/post，添加一个uyan.html，把uyan.cc网站上那段代码添加进去。
+然后编辑_config.yml，文末加上
+    # uyan
+    uyan: true
+最后去编辑source/_includes/article.html，在最后一个endif后面加上
+    { % if site.uyan % }
+    { % include post/uyan.html % }
+    { % endif % }
+然后每个帖子后面都会有留言框了。记得generate然后deploy<br/>
+<strong><em>上面的大括号和百分号之间没有空格！</em></strong> 如果我去掉空格那他就把他转意了……理论上代码块不该被转意的……尼玛</p>
+]]></content>
+  </entry>
+  
+</feed>

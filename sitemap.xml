@@ -1,0 +1,77 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<urlset xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.sitemaps.org/schemas/sitemap/0.9 http://www.sitemaps.org/schemas/sitemap/0.9/sitemap.xsd" xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+  
+  
+  <url>
+    <loc>http://bearqq.github.io/blog/2013/06/06/run-x86-dot-exe-in-arm-linux/</loc>
+    
+    <lastmod>2013-06-06T10:29:00+08:00</lastmod>
+    
+    <priority>0.8</priority>
+  </url>
+  
+  <url>
+    <loc>http://bearqq.github.io/blog/2013/06/06/linux-a10-cubieboard/</loc>
+    
+    <lastmod>2013-06-06T09:20:00+08:00</lastmod>
+    
+    <priority>0.8</priority>
+  </url>
+  
+  <url>
+    <loc>http://bearqq.github.io/blog/2013/05/05/lubuntu/</loc>
+    
+    <lastmod>2013-05-05T09:45:00+08:00</lastmod>
+    
+    <priority>0.8</priority>
+  </url>
+  
+  <url>
+    <loc>http://bearqq.github.io/blog/2013/05/01/chroot-linux/</loc>
+    
+    <lastmod>2013-05-01T11:52:00+08:00</lastmod>
+    
+    <priority>0.8</priority>
+  </url>
+  
+  <url>
+    <loc>http://bearqq.github.io/blog/2013/04/30/procedure/</loc>
+    
+    <lastmod>2013-04-30T22:51:00+08:00</lastmod>
+    
+    <priority>0.8</priority>
+  </url>
+  
+  <url>
+    <loc>http://bearqq.github.io/blog/2013/04/30/hello-world-slash/</loc>
+    
+    <lastmod>2013-04-30T20:04:00+08:00</lastmod>
+    
+    <priority>0.8</priority>
+  </url>
+  
+  
+  <url>
+    <loc>http://bearqq.github.io/blog/archives/</loc>
+    <lastmod>2014-10-07T19:20:51+08:00</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  
+  <url>
+    <loc>http://bearqq.github.io/</loc>
+    <lastmod>2014-10-07T19:20:51+08:00</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>1.0</priority>
+  </url>
+  
+  <url>
+    <loc>http://bearqq.github.io/blog/categories/</loc>
+    <lastmod>2014-10-07T19:20:51+08:00</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  
+  
+  
+</urlset>
