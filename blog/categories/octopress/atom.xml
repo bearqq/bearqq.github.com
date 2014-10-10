@@ -4,7 +4,7 @@
   <title><![CDATA[Category: octopress | Another blog for bearqq]]></title>
   <link href="http://blog.ooQoo.ovh/blog/categories/octopress/atom.xml" rel="self"/>
   <link href="http://blog.ooQoo.ovh/"/>
-  <updated>2014-10-10T20:51:31+08:00</updated>
+  <updated>2014-10-10T21:00:59+08:00</updated>
   <id>http://blog.ooQoo.ovh/</id>
   <author>
     <name><![CDATA[Bearqq]]></name>
@@ -24,33 +24,51 @@
 
 <p>先是安装git，在msysgit(<a href="https://github.com/msysgit/msysgit/releases">https://github.com/msysgit/msysgit/releases</a>)下载win版git，安的时候选择添加到系统path。</p>
 
-<p>然后克隆下源码
-    git clone git://github.com/imathis/octopress.git octopress<br/>
-    cd octopress</p>
+<p>然后克隆下源码</p>
+
+<pre><code>    git clone git://github.com/imathis/octopress.git octopress  
+    cd octopress  
+</code></pre>
 
 <p>安装ruby1.9.3，(<a href="http://rubyinstaller.org">http://rubyinstaller.org</a>)同样添加到path。并且下载相同版本dev，解压后打开msys.bat，进入之前octopress的文件夹。</p>
 
-<p>安装依赖<br/>
-    gem install bundler<br/>
-    bundle install<br/>
-找个主题安装，谷歌即可。然后安装<br/>
-如果默认主题，使用<br/>
-    rake install</p>
+<p>安装依赖</p>
+
+<pre><code>    gem install bundler  
+    bundle install  
+</code></pre>
+
+<p>找个主题安装，谷歌即可。然后安装<br/>
+如果默认主题，使用</p>
+
+<pre><code>    rake install  
+</code></pre>
 
 <h1>如果出现提示Set the codepage to 65001 for Windows machines.</h1>
 
-<p>根据<a href="http://www.tomordonez.com/blog/2014/07/30/installing-octopress-in-windows-server/">老外的文章</a>，在octopress文件夹下<br/>
-    gem install jekyll -v 2.1.0<br/>
-编辑Gemfile为<br/>
-    gem &lsquo;jekyll&rsquo;, &lsquo;2.1.0&rsquo;<br/>
-然后<br/>
-    bundle install<br/>
-    bundle update jekyll<br/>
-最后编辑Rakefile，去掉如下字样
-    if (/cygwin &hellip;<br/>
-      puts &lsquo;## Set the codepage to 65001 for windows machines&rsquo;<br/>
-      &lsquo;chcp 65001&rsquo;<br/>
-    end</p>
+<p>根据<a href="http://www.tomordonez.com/blog/2014/07/30/installing-octopress-in-windows-server/">老外的文章</a>，在octopress文件夹下</p>
+
+<pre><code>    gem install jekyll -v 2.1.0  
+</code></pre>
+
+<p>编辑Gemfile为</p>
+
+<pre><code>    gem 'jekyll', '2.1.0'  
+</code></pre>
+
+<p>然后</p>
+
+<pre><code>    bundle install  
+    bundle update jekyll  
+</code></pre>
+
+<p>最后编辑Rakefile，去掉如下字样</p>
+
+<pre><code>    if (/cygwin ...  
+      puts '## Set the codepage to 65001 for windows machines'  
+      'chcp 65001'  
+    end  
+</code></pre>
 ]]></content>
   </entry>
   
