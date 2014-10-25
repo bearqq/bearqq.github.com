@@ -3,6 +3,14 @@
   
   
   <url>
+    <loc>http://blog.ooQoo.ovh/blog/2014/10/25/social-engineering-based-dict-cracking/</loc>
+    
+    <lastmod>2014-10-25T12:56:57+08:00</lastmod>
+    
+    <priority>0.8</priority>
+  </url>
+  
+  <url>
     <loc>http://blog.ooQoo.ovh/blog/2014/10/07/octopress-in-windows/</loc>
     
     <lastmod>2014-10-07T20:06:17+08:00</lastmod>
@@ -61,21 +69,21 @@
   
   <url>
     <loc>http://blog.ooQoo.ovh/blog/archives/</loc>
-    <lastmod>2014-10-10T21:00:59+08:00</lastmod>
+    <lastmod>2014-10-25T14:16:53+08:00</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.7</priority>
   </url>
   
   <url>
     <loc>http://blog.ooQoo.ovh/</loc>
-    <lastmod>2014-10-10T21:00:59+08:00</lastmod>
+    <lastmod>2014-10-25T14:16:53+08:00</lastmod>
     <changefreq>weekly</changefreq>
     <priority>1.0</priority>
   </url>
   
   <url>
     <loc>http://blog.ooQoo.ovh/blog/categories/</loc>
-    <lastmod>2014-10-10T21:00:59+08:00</lastmod>
+    <lastmod>2014-10-25T14:16:53+08:00</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.7</priority>
   </url>

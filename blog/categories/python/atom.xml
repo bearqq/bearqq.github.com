@@ -1,0 +1,311 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+
+  <title><![CDATA[Category: python | Another blog for bearqq]]></title>
+  <link href="http://blog.ooQoo.ovh/blog/categories/python/atom.xml" rel="self"/>
+  <link href="http://blog.ooQoo.ovh/"/>
+  <updated>2014-10-25T14:16:53+08:00</updated>
+  <id>http://blog.ooQoo.ovh/</id>
+  <author>
+    <name><![CDATA[Bearqq]]></name>
+    
+  </author>
+  <generator uri="http://octopress.org/">Octopress</generator>
+
+  
+  <entry>
+    <title type="html"><![CDATA[基于社会工程学的弱密码尝试]]></title>
+    <link href="http://blog.ooQoo.ovh/blog/2014/10/25/social-engineering-based-dict-cracking/"/>
+    <updated>2014-10-25T12:56:57+08:00</updated>
+    <id>http://blog.ooQoo.ovh/blog/2014/10/25/social-engineering-based-dict-cracking</id>
+    <content type="html"><![CDATA[<p>从2011年12月CSDN被爆出的那个数据库开始，在公开的层面，网络已经不再那么安全。先后有CSDN，多玩，天涯等等一系列的网站被爆出明文的用户名、密码、邮箱等数据，还有更多的网站或明文，或加盐，这样的数据被称为裤子，在网上流传。<br/>
+不过，这篇文章不是来声讨这些厂商的，而是想说一下用户的习惯。这些大量的泄露信息给了大家巨大的数据可供分析。那么最直观的，就是用户的密码习惯。很显然，数据包一出来，就有各种分析了。让我们来看看网上已有的信息：</p>
+
+<pre><code>    有近45万的用户使用 123456789 和 12345678 做口令。
+    有近40万的用户使用自己的生日做口令。
+    有近15万的用户使用自己的手机号做口令。
+    有近25万的用户使用自己的QQ号做口令。
+    设置成弱口令的用户占了590万，也就是那种就算你用MD5或是SHA散列的也能很快就被暴力破解出来的口令。
+    只有8000多个用户的口令里在8个长度以上，并有大写字母，小写字母，数字，并不在字典表里。
+</code></pre>
+
+<p>再来看看弱密码top100：</p>
+
+<pre><code>235033 123456789
+212751 12345678
+76346 11111111
+45902 dearbook
+34953 00000000
+19986 123123123
+17791 1234567890
+15033 88888888
+6995 111111111
+5966 147258369
+5553 987654321
+5459 aaaaaaaa
+5145 1111111111
+5025 66666666
+4435 a123456789
+4096 11223344
+3667 1qaz2wsx
+3649 xiazhili
+3610 789456123
+3497 password
+3281 87654321
+3277 qqqqqqqq
+3175 000000000
+3143 qwertyuiop
+3094 qq123456
+3077 iloveyou
+3061 31415926
+2985 12344321
+2886 0000000000
+2826 asdfghjkl
+2797 1q2w3e4r
+2580 123456abc
+2578 0123456789
+2573 123654789
+2540 12121212
+2515 qazwsxedc
+2396 abcd1234
+2380 12341234
+2348 110110110
+2298 asdasdasd
+2243 22222222
+2166 123321123
+2160 abc123456
+2145 123456
+2138 a12345678
+2113 123456123
+2106 a1234567
+2100 1234qwer
+1989 qwertyui
+1986 123456789a
+1971 aa123456
+1918 asdfasdf
+1891 99999999
+1859 999999999
+1859 123456aa
+1854 123456123456
+1699 520520520
+1656 963852741
+1652 741852963
+1652 55555555
+1589 33333333
+1480 qwer1234
+1384 asd123456
+1339 77777777
+1316 qweasdzxc
+1285 code8925
+1273 11112222
+1268 ms0083jxj
+1245 zzzzzzzz
+1214 111222333
+1206 qweqweqwe
+1200 3.1415926
+1183 123456qq
+1148 147852369
+1136 521521521
+1121 asdf1234
+1111 123698745
+1109 1123581321
+1058 asdfghjk
+1054 q1w2e3r4
+1038 12345678a
+1003 woaini1314
+991 1234abcd
+988 123qweasd
+975 1qazxsw2
+967 woaiwojia
+920 321321321
+910 05962514787
+894 123456987
+892 kingcom5
+882 zxcvbnm123
+882 5845201314
+853 0987654321
+847 wwwwwwww
+835 11111111111111111111
+805 12345600
+783 11235813
+777 1q2w3e4r5t
+772 10101010
+770 123456asd
+</code></pre>
+
+<p>值得一提的是，CSDN注册的时候强制要求了密码位数超过8位，而其他网站通常只要求6位。这体现了CSDN码农乐园的觉悟？呵呵呵。 <br/>
+让我们再来看看最近流传的gmail.txt，号称是gmail的裤子，不过在我看来是国人整理的gmail邮箱的一些密码而已。要知道，gmail不可能允许这么弱的密码存在的。以下是top榜单：</p>
+
+<pre><code>123456
+password
+123456789
+12345
+qwerty
+12345678
+111111
+abc123
+123123
+1234567
+1234567890
+1234
+iloveyou
+password1
+000000
+27653
+zaq12wsx
+tinkle
+qwerty123
+monkey
+target123
+dragon
+1q2w3e4r
+654321
+123qwe
+123321
+friendster
+asdfghjkl
+letmein
+princess
+1qaz2wsx
+sunshine
+passw0rd
+trustno1
+qwertyuiop
+master
+tester1
+666666
+superman
+taishan2011
+aaaaa
+computer
+fuckyou
+shadow
+qazwsx
+zxcvbnm
+samsung
+abcd1234
+echizen18
+aaaaaa
+welcome
+121212
+qazwsx123
+pokemon
+987654321
+hello123
+bismillah
+1q2w3e
+qwe123
+112233
+daniel
+90801
+asdfgh
+asdfasdf
+1234qwer
+cheese
+soccer
+killer
+michael
+whatever
+baseball
+123
+12345678s
+asdasd
+123456aa
+159753
+football
+friends
+liverpool
+pakistan
+purple
+matrix
+asdf1234
+123654
+123abc
+polska
+charlie
+q1w2e3r4
+starwars
+freedom
+jordan
+lol123
+google
+hello
+krishna
+hannah
+secret
+deepfrequency
+7777777
+wholefoo
+</code></pre>
+
+<p>好了，前几位看看就喜闻乐见了。不管你怎么宣传，总有人用若密码。不过抱歉，我不是在说用户对安全无知，因为我自己就用弱密码。为什么呢？因为一个破网站，凭什么还要我注册了才能用？凭什么还要保存我的密码？凭什么还有网站tmd明文存储密码？你tmd要干嘛？造反么？？<br/>
+吐槽完毕，说到正题了。当你面对一个用户，想知道他的密码，你会怎么去猜？如果你面对一堆用户，想尽可能快的猜对尽可能多的密码，你会怎么去猜？弱密码？说的好！</p>
+
+<h1>通过弱密码猜解用户密码</h1>
+
+<p>是的，弱密码有哪些呢？根据这些泄露的数据，可以拿到一个榜单，top数位就是弱密码了。用这样密码的人不少，那么尝试一下当然是值得的。那么我们就来生成一个list来存放弱密码吧。</p>
+
+<pre><code>predict=[
+    '123456',
+    'password',
+    '12345678',
+    '123456789',
+    '111111',
+    '123123',
+    'qwerty',
+]
+</code></pre>
+
+<p>以上就是我认为使用量比较大的弱密码了。当然，你肯定有你自己的想法，随意添加。但不宜添加过多，因为使用的人较少的密码，添加进去以后并不会带来太大的收益，却会极大的延长时间。</p>
+
+<h1>还是弱密码猜解用户密码</h1>
+
+<p>除了固定的弱密码，当然还有别的弱密码。比如生日，手机，qq号。如果针对单个用户，这样的信息也是有用的信息。但如果面对一群用户，那收集这个信息就有些过于缓慢了。不过这也提供了一个思路，因为还有别的“动态”弱密码，而且谜底就在谜面————用户名。是的，有人用自己的用户名做弱密码，还有的嘛，自己考虑吧。添加如下弱密码：</p>
+
+<pre><code>predict=[
+    '*username**username*',
+    '*username*'
+]
+</code></pre>
+
+<h1>更多社工猜解用户密码</h1>
+
+<p>“大量用户”这个设定，限制了我们在单个用户上用的时间成本。那么除了之前的两个手段以外，还有别的社工手段，且时间成本足够低的么？当然。<strong><em>我们靠裤子得到了弱密码排行，我们也可以靠裤子得到。。密码本身啊！</em></strong>考虑一下网上已有的一些裤子查询网站，然后提交用户名，就可以得到相关的密码了，再将这些珍贵数据带进去试，时间并不会有太多增加。不过这样的网站不多，有的几个或许也有服务器验证之类的方式避免滥用，嗯，怎么解决我现在就不提了。</p>
+
+<h1>你会手动去尝试这些密码？</h1>
+
+<p>人，靠勤劳的双手，没什么不妥，不过用着计算机去手动尝试，这就是你的不对了。。少量的用户-密码，我不反对，大量的。。我觉得是时候拿出python（的伪代码）了。核心代码如下：</p>
+
+<pre><code>predict=[
+    u'123456',
+    u'*username**username*',
+    u'password',
+    u'12345678',
+    u'123456789',
+    u'111111',
+    u'123123',
+    u'qwerty',
+    u'*username*'
+]#排名部分先后，因为后续去重复时会被打乱
+
+def ck():
+    name=getusername()
+    dictpass=fetchpass(name)
+    testpass(predict.append(dictpass))#我就是这么懒
+</code></pre>
+
+<h1>你真的试过么？</h1>
+
+<p>是的，不记得是哪个论坛（反正不是小白聚集地），反正现在已经访问不到了。。用户总数608个，你猜猜通过上面这段小代码能够猜出多少个用户的密码？<br/>
+不绕弯子了，直说吧。</p>
+
+<pre><code>608个用户中，有65个用户的密码在predict中能够找到，占总数的10.7%！
+另外有12个用户的密码，通过少量的裤子，查询可以查到，占总数的2.0%！
+也就是说，在这个论坛里，你可以很容易的得到其中12.7%的用户的密码。
+</code></pre>
+
+<p>至于拿这些密码来干什么，我还真没想过。你猜猜？</p>
+]]></content>
+  </entry>
+  
+</feed>
